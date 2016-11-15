@@ -6,7 +6,7 @@ import java.sql.Connection;
  *
  * @author Pancho
  */
-public interface FabricarConexion {
+public interface FabricaConexion {
 
     Connection fabricarConexion() throws Exception;
     

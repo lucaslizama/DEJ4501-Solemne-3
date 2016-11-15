@@ -7,7 +7,7 @@ import java.sql.DriverManager;
  *
  * @author Pancho
  */
-public class JDBCMysql implements FabricarConexion {
+public class JDBCMysql implements FabricaConexion {
     
     private static final String USUARIO = "root";
     private static final String PASS = "";
