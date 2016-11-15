@@ -1,0 +1,13 @@
+Tablas 
+
+ 
+-Usuario (id, idRol, Nombre completo, rut, correo, UserName, Password)
+-RolUsuario (Id, nombreRol)
+-Pasaje (Id,IdCompra, rut, nombre)
+-Compra (Id, IdUsuario,IdDestino, IdPuerto,IdBarco, FecEmbarque, FecDesenbarque,ValorPasaje, numPasajero,IdTipoHabitacion)
+-FormaPago (Id, Nombre)
+-Puerto (Id, Nombre)
+-Destino (Id, Nombre)
+-Barco (Id, nombre, patente)
+-Habitacion(Id,idTipoHabitacion, numero)
+-TipoHabitacion (Id, nombre,cantPersonas)
