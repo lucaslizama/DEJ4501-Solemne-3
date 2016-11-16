@@ -14,7 +14,7 @@
     <body>
         <h1>Bienvenido</h1>
         <ol>
-            <li><a href="/registro.do">Registrarse</a></li>
+            <li><a href="/registro">Registrarse</a></li>
             <li><a href="/login">Login</a></li>
             <li><a href="/comprar">Comprar Pasajes</a></li>
         </ol>
