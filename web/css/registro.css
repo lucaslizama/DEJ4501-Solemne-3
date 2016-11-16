@@ -1,0 +1,15 @@
+.registro-usuario-wrapper {
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form-label {
+    width: 150px;
+    display: block;
+}
+
+.submit-button {
+    display: block;
+    margin-top: 15px;
+}
