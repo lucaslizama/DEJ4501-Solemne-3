@@ -33,7 +33,6 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Rolusuario.findAll", query = "SELECT r FROM Rolusuario r"),
     @NamedQuery(name = "Rolusuario.findById", query = "SELECT r FROM Rolusuario r WHERE r.id = :id"),
-    @NamedQuery(name = "Rolusuario.findByRutUsuario", query = "SELECT r FROM Rolusuario r WHERE r.rutUsuario = :rutUsuario"),
     @NamedQuery(name = "Rolusuario.findByNombreRol", query = "SELECT r FROM Rolusuario r WHERE r.nombreRol = :nombreRol")})
 public class Rolusuario implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -42,11 +41,6 @@ public class Rolusuario implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 20)
-    @Column(name = "rut_usuario")
-    private String rutUsuario;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 20)
@@ -62,9 +56,8 @@ public class Rolusuario implements Serializable {
         this.id = id;
     }
 
-    public Rolusuario(Integer id, String rutUsuario, String nombreRol) {
+    public Rolusuario(Integer id, String nombreRol) {
         this.id = id;
-        this.rutUsuario = rutUsuario;
         this.nombreRol = nombreRol;
     }
 
@@ -74,14 +67,6 @@ public class Rolusuario implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getRutUsuario() {
-        return rutUsuario;
-    }
-
-    public void setRutUsuario(String rutUsuario) {
-        this.rutUsuario = rutUsuario;
     }
 
     public String getNombreRol() {

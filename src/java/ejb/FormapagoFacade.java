@@ -12,11 +12,10 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author cetecom
+ * @author lucas
  */
 @Stateless
 public class FormapagoFacade extends AbstractFacade<Formapago> {
-
     @PersistenceContext(unitName = "DEJ4501-Solemne-3PU")
     private EntityManager em;
 

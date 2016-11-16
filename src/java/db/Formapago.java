@@ -12,6 +12,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -42,6 +44,9 @@ public class Formapago implements Serializable {
     @Size(min = 1, max = 20)
     @Column(name = "nombre")
     private String nombre;
+    @JoinColumn(name = "id_compra", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private Compra idCompra;
 
     public Formapago() {
     }
@@ -69,6 +74,14 @@ public class Formapago implements Serializable {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public Compra getIdCompra() {
+        return idCompra;
+    }
+
+    public void setIdCompra(Compra idCompra) {
+        this.idCompra = idCompra;
     }
 
     @Override

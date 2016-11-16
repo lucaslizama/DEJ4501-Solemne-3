@@ -12,11 +12,10 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author cetecom
+ * @author lucas
  */
 @Stateless
 public class PuertodestinoFacade extends AbstractFacade<Puertodestino> {
-
     @PersistenceContext(unitName = "DEJ4501-Solemne-3PU")
     private EntityManager em;
 
