@@ -15,7 +15,11 @@
         <fieldset>
             <legend>Ingrese sus datos</legend>
             <form action="/registro" method="POST">
-                <label for=""
+                <label for="rut">Rut </label>
+                <input type="text" name="rut">
+                <span> - </span>
+                <input type="text" name="dv">
+                
             </form>
         </fieldset>
     </body>

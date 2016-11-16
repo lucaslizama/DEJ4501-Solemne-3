@@ -36,6 +36,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u"),
     @NamedQuery(name = "Usuario.findById", query = "SELECT u FROM Usuario u WHERE u.id = :id"),
     @NamedQuery(name = "Usuario.findByRutUsuario", query = "SELECT u FROM Usuario u WHERE u.rutUsuario = :rutUsuario"),
+    @NamedQuery(name = "Usuario.findByDvUsuario", query = "SELECT u FROM Usuario u WHERE u.dvUsuario = :dvUsuario"),
     @NamedQuery(name = "Usuario.findByNombre", query = "SELECT u FROM Usuario u WHERE u.nombre = :nombre"),
     @NamedQuery(name = "Usuario.findByApPaterno", query = "SELECT u FROM Usuario u WHERE u.apPaterno = :apPaterno"),
     @NamedQuery(name = "Usuario.findByApMaterno", query = "SELECT u FROM Usuario u WHERE u.apMaterno = :apMaterno"),
@@ -51,9 +52,10 @@ public class Usuario implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 20)
     @Column(name = "rut_usuario")
-    private String rutUsuario;
+    private int rutUsuario;
+    @Column(name = "dv_usuario")
+    private Character dvUsuario;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 20)
@@ -99,7 +101,7 @@ public class Usuario implements Serializable {
         this.id = id;
     }
 
-    public Usuario(Integer id, String rutUsuario, String nombre, String apPaterno, String apMaterno, String userName, String correo, String pass) {
+    public Usuario(Integer id, int rutUsuario, String nombre, String apPaterno, String apMaterno, String userName, String correo, String pass) {
         this.id = id;
         this.rutUsuario = rutUsuario;
         this.nombre = nombre;
@@ -118,12 +120,20 @@ public class Usuario implements Serializable {
         this.id = id;
     }
 
-    public String getRutUsuario() {
+    public int getRutUsuario() {
         return rutUsuario;
     }
 
-    public void setRutUsuario(String rutUsuario) {
+    public void setRutUsuario(int rutUsuario) {
         this.rutUsuario = rutUsuario;
+    }
+
+    public Character getDvUsuario() {
+        return dvUsuario;
+    }
+
+    public void setDvUsuario(Character dvUsuario) {
+        this.dvUsuario = dvUsuario;
     }
 
     public String getNombre() {

@@ -12,7 +12,8 @@ CREATE TABLE rolUsuario(
 CREATE TABLE usuario(
     id int auto_increment,
     id_rol int not null,
-    rut_usuario varchar(20) not null,
+    rut_usuario int UNSIGNED not null,
+    dv_usuario char(1),
     nombre varchar(20) not null,	
     ap_paterno varchar(20) not null,
     ap_materno varchar(20) not null,
