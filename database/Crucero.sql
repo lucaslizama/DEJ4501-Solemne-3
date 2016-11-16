@@ -4,7 +4,6 @@ use bd_crucero;
 --Tabla rolUsuario
 CREATE TABLE rolUsuario(
     id int auto_increment,
-    rut_usuario varchar(20) not null,
     nombre_rol varchar(20) not null,
     primary key(id)
 );
@@ -24,28 +23,50 @@ CREATE TABLE usuario(
     FOREIGN KEY (id_rol) REFERENCES rolUsuario (id)
 );
 
+--Tabla compra
+CREATE TABLE compra(
+    id int auto_increment,
+    id_usuario int not null,
+    id_origen int not null,
+    id_destino int not null,
+    id_barco int not null,
+    id_habitacion int not null,
+    fecha_enbarque date not null,
+    fecha_desenbarque date,
+    numero_pasajeros int not null,
+    valor_pasaje int not null,
+    PRIMARY KEY(id),
+    FOREIGN KEY(id_usuario) REFERENCES usuario(id)
+);
+
 --Tabla puertoOrigen
 CREATE TABLE puertoOrigen(
     id int auto_increment,
+    id_compra int not null,
     numero_puerto int not null,
     nombre_puerto varchar(20) not null,
-    PRIMARY KEY(id)
+    PRIMARY KEY(id),
+    foreign key(id_compra) references compra(id)
 );
 
 --Tabla puertoDestino
 CREATE TABLE puertoDestino(
     id int auto_increment,
+    id_compra int not null,
     numero_puerto int not null,
     nombre_puerto varchar(20) not null,
-    PRIMARY KEY(id)
+    PRIMARY KEY(id),
+    foreign key(id_compra) references compra(id)
 );
 
 --Tabla barco
 CREATE TABLE barco(
     id int auto_increment,
+    id_compra int not null,
     patente varchar(20) not null,
     nombre_barco varchar(20) not null,
-    PRIMARY KEY(id)
+    PRIMARY KEY(id),
+    foreign key(id_compra) references compra(id)
 );
 
 --Tabla tipoHabitacion
@@ -60,29 +81,11 @@ CREATE TABLE tipoHabitacion(
 CREATE TABLE habitacion(
     id int auto_increment,
     id_tipo_habitacion int not null,
+    id_compra int not null,
     numero_habitacion int UNSIGNED not null,
     PRIMARY KEY(id),
-    FOREIGN KEY(id_tipo_habitacion) REFERENCES tipoHabitacion(id)
-);
-
---Tabla compra
-CREATE TABLE compra(
-    id int auto_increment,
-    id_usuario int not null,
-    id_origen int not null,
-    id_destino int not null,
-    id_barco int not null,
-    id_habitacion int not null,
-    fecha_enbarque date not null,
-    fecha_desenbarque date,
-    numero_pasajeros int not null,
-    valor_pasaje int not null,
-    PRIMARY KEY(id),
-    FOREIGN KEY(id_usuario) REFERENCES usuario(id),
-    FOREIGN KEY(id_origen) REFERENCES puertoOrigen(id),
-    FOREIGN KEY(id_destino) REFERENCES puertoDestino(id),
-    FOREIGN KEY(id_barco) REFERENCES barco(id),
-    FOREIGN KEY(id_habitacion) REFERENCES habitacion(id)
+    FOREIGN KEY(id_tipo_habitacion) REFERENCES tipoHabitacion(id),
+    foreign key(id_compra) references compra(id)
 );
 
 --Tabla pasaje
@@ -97,8 +100,10 @@ CREATE TABLE pasaje(
 
 --Tabla formaPago
 CREATE TABLE formaPago(
-    id int auto_increment,	
+    id int auto_increment,
+    id_compra int not null,
     nombre varchar(20) not null,
-    primary key(id)
+    primary key(id),
+    foreign key(id_compra) references compra(id)
 );
 
