@@ -12,6 +12,11 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <fieldset>
+            <legend>Ingrese sus datos</legend>
+            <form action="/registro" method="POST">
+                <label for=""
+            </form>
+        </fieldset>
     </body>
 </html>
