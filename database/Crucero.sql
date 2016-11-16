@@ -1,103 +1,104 @@
 create schema bd_crucero;
 use bd_crucero;
 
---Tabla usuario
-CREATE TABLE usuario(
-	id_usuario int auto increment not null,
-	id_rol int not null,
-	rut_usuario varchar(20) not null,
-	nombre varchar(20) not null,	
-	ap_paterno varchar(20) not null,
-	ap_materno varchar(20) not null,
-	user_name varchar(20) not null,
-	correo varchar(50) not null,
-	pass varchar(20) not null,
-	CONSTRAINT usuario PRIMARY KEY (rut_usuario),
-	FOREIGN KEY (id_rol) REFERENCES rolUsuario (id_rol)
-);
-
 --Tabla rolUsuario
 CREATE TABLE rolUsuario(
-	id_rol int auto increment not null,
-	rut varchar(20) not null,
-	nombre_rol varchar(20) not null,
-	CONSTRAINT rolUsuario PRIMARY KEY()
+    id int auto_increment,
+    rut_usuario varchar(20) not null,
+    nombre_rol varchar(20) not null,
+    primary key(id)
 );
 
---Tabla pasaje
-CREATE TABLE pasaje(
-	id_pasaje int auto increment not null,
-	id_compra int not null,
-	rut_usuario varchar(20) not null,
-	CONSTRAINT pasaje PRIMARY KEY(id_pasaje),
-	CONSTRAINT id_compra FOREIGN KEY compra REFERENCES(id_compra),
-	CONSTRAINT rut_usuario FOREIGN KEY usuario REFERENCES(rut_usuario)
-);
-
---Tabla compra
-CREATE TABLE compra(
-	id_compra int auto increment not null,
-	rut_usuario varchar(20) not null,
-	id_origen int not null,
-	id_destino int not null,
-	patente varchar(20) not null,
-	id_tipo_habitacion int not null,
-	fecha_enbarque date not null,
-	fecha_desenbarque date,
-	numero_pasajeros int not null,
-	valor_pasaje int not null,
-	CONSTRAINT compra PRIMARY KEY(id_compra),
-	CONSTRAINT rut_usuario FOREIGN KEY usuario REFERENCES(rut_usuario),
-	CONSTRAINT id_origen FOREIGN KEY puertoOrigen REFERENCES(id_origen),
-	CONSTRAINT id_destino FOREIGN KEY puertoDestino REFERENCES(id_destino),
-	CONSTRAINT patente FOREIGN KEY barco REFERENCES(patente),
-	CONSTRAINT id_tipo_habitacion FOREIGN KEY tipoHabitacion REFERENCES(id_tipo_habitacion)
-);
-
---Tabla formaPago
-CREATE TABLE formaPago(
-	id int auto increment not null,	
-	nombre varchar(20) not null,
-	CONSTRAINT formaPago PRIMARY KEY()
+--Tabla usuario
+CREATE TABLE usuario(
+    id int auto_increment,
+    id_rol int not null,
+    rut_usuario varchar(20) not null,
+    nombre varchar(20) not null,	
+    ap_paterno varchar(20) not null,
+    ap_materno varchar(20) not null,
+    user_name varchar(20) not null,
+    correo varchar(50) not null,
+    pass varchar(255) not null,
+    PRIMARY KEY (id),
+    FOREIGN KEY (id_rol) REFERENCES rolUsuario (id)
 );
 
 --Tabla puertoOrigen
 CREATE TABLE puertoOrigen(
-	id_origen int not null,
-	numero_puerto int not null,
-	nombre_puerto varchar(20) not null,
-	CONSTRAINT puertoOrigen PRIMARY KEY(id_origen)
+    id int auto_increment,
+    numero_puerto int not null,
+    nombre_puerto varchar(20) not null,
+    PRIMARY KEY(id)
 );
 
 --Tabla puertoDestino
 CREATE TABLE puertoDestino(
-	id_destino int not null,
-	numero_puerto int not null,
-	nombre_puerto varchar(20) not null,
-	CONSTRAINT puertoDestino PRIMARY KEY(id_destino)
+    id int auto_increment,
+    numero_puerto int not null,
+    nombre_puerto varchar(20) not null,
+    PRIMARY KEY(id)
 );
 
 --Tabla barco
 CREATE TABLE barco(
-	id int auto increment not null,
-	patente varchar(20) not null,
-	nombre_barco varchar(20) not null,
-	CONSTRAINT barco PRIMARY KEY(patente)
-);
-
---Tabla habitacion
-CREATE TABLE habitacion(
-	id_habitacion int auto increment not null,
-	id_tipo_habitacion int not null,
-	numero_habitacion not null,
-	CONSTRAINT habitacion PRIMARY KEY(id_habitacion)
+    id int auto_increment,
+    patente varchar(20) not null,
+    nombre_barco varchar(20) not null,
+    PRIMARY KEY(id)
 );
 
 --Tabla tipoHabitacion
 CREATE TABLE tipoHabitacion(
-	id_tipo_habitacion int auto increment not null,
-	nombre varchar(20) not null,
-	cantidad_personas int,
-	CONSTRAINT tipoHabitacion PRIMARY KEY(id_tipo_habitacion)
+    id int auto_increment,
+    nombre varchar(20) not null,
+    cantidad_personas int,
+    PRIMARY KEY(id)
+);
+
+--Tabla habitacion
+CREATE TABLE habitacion(
+    id int auto_increment,
+    id_tipo_habitacion int not null,
+    numero_habitacion int UNSIGNED not null,
+    PRIMARY KEY(id),
+    FOREIGN KEY(id_tipo_habitacion) REFERENCES tipoHabitacion(id)
+);
+
+--Tabla compra
+CREATE TABLE compra(
+    id int auto_increment,
+    id_usuario int not null,
+    id_origen int not null,
+    id_destino int not null,
+    id_barco int not null,
+    id_habitacion int not null,
+    fecha_enbarque date not null,
+    fecha_desenbarque date,
+    numero_pasajeros int not null,
+    valor_pasaje int not null,
+    PRIMARY KEY(id),
+    FOREIGN KEY(id_usuario) REFERENCES usuario(id),
+    FOREIGN KEY(id_origen) REFERENCES puertoOrigen(id),
+    FOREIGN KEY(id_destino) REFERENCES puertoDestino(id),
+    FOREIGN KEY(id_barco) REFERENCES barco(id),
+    FOREIGN KEY(id_habitacion) REFERENCES habitacion(id)
+);
+
+--Tabla pasaje
+CREATE TABLE pasaje(
+    id int auto_increment,
+    id_compra int not null,
+    id_usuario int not null,
+    PRIMARY KEY(id),
+    FOREIGN KEY(id_compra) REFERENCES compra(id),
+    FOREIGN KEY(id_usuario) REFERENCES usuario(id)
+);
+
+--Tabla formaPago
+CREATE TABLE formaPago(
+    id int auto_increment,	
+    nombre varchar(20) not null,
+    primary key(id)
 );
 
