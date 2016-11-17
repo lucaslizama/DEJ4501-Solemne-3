@@ -9,6 +9,16 @@
     display: block;
 }
 
+.form-textfield {
+    width: 150px;
+    text-align: center;
+}
+
+.form-dv {
+    width: 20px;
+    text-align: center;
+}
+
 .submit-button {
     display: block;
     margin-top: 15px;

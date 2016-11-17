@@ -17,22 +17,24 @@
             <legend>Ingrese sus datos</legend>
             <form action="/registro" method="POST">
                 <label class="form-label" for="rut">Rut </label>
-                <input type="text" name="rut">
+                <input class="form-textfield" type="text" name="rut">
                 <span> - </span>
-                <input type="text" name="dv">
+                <input class="form-dv" type="text" name="dv">
                 <label class="form-label" for="nombre">Nombre</label>
-                <input type="text" name="nombre">
+                <input class="form-textfield" type="text" name="nombre">
                 <label class="form-label" for="apellidoPat">Apellido Paterno</label>
-                <input type="text" name="apellidoPat">
+                <input class="form-textfield" type="text" name="apellidoPat">
                 <label class="form-label" for="apellidoMat">Apellido Materno</label>
-                <input type="text" name="apellidoMat">
+                <input class="form-textfield" type="text" name="apellidoMat">
                 <label class="form-label" for="correo">Correo</label>
-                <input type="email" name="correo">
+                <input class="form-textfield" type="email" name="correo">
                 <label class="form-label" for="user">Usuario</label>
-                <input type="text" name="user">
+                <input class="form-textfield" type="text" name="user">
                 <label class="form-label" for="pass">Contraseña</label>
-                <input type="password" name="pass">
+                <input class="form-textfield" type="password" name="pass">
                 <button class="submit-button" type="submit">Registrar</button>
+                <span style="color:${color}">${mensaje}</span>
+                <div><a href="/" style="visibility:${mensaje != null ? 'visible' : 'hidden'}">Volver a inicio</a></div>
             </form>
         </fieldset>
     </body>
