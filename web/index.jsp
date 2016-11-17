@@ -16,7 +16,7 @@
         <ol>
             <li><a href="/registro">Registrarse</a></li>
             <li><a href="/login">Login</a></li>
-            <li><a href="/comprar">Comprar Pasajes</a></li>
+            <li><a href="/cotizar">Cotizar Pasajes</a></li>
         </ol>
     </body>
 </html>
