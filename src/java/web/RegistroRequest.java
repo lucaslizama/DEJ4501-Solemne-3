@@ -39,13 +39,62 @@ public class RegistroRequest {
     
     
     public boolean validarParametros() throws ServletException, IOException {
-        if(!validarCadenasVacias()) return false;
+        if(!validarCadenasVacias()) 
+            return false;
+        if(!validarRut(parameters.get("rut"),parameters.get("dv").charAt(0))) 
+            return false;
         
         return true;
     }
     
-    private boolean validarRut() {
-        return false;
+    private boolean validarRut(String rut,Character dv) throws ServletException, IOException {
+        if(!validarTiposRutYDv(rut, dv))
+            return false;
+        if(!validarDigitoVerificador(rut, dv))
+            return false;
+        
+        return true;
+    }
+    
+    private boolean validarDigitoVerificador(String rut,Character dv) throws ServletException, IOException{
+        int factor = 9;
+        int suma = 0;
+        Integer sumaAlternada = 0;
+        
+        for (int i = rut.length() - 1; i >= 0; i++) {
+            Character digito = rut.charAt(i);
+            suma += Integer.parseInt(digito.toString()) * factor;
+            factor = (factor - 1) < 4 ? 9 : (factor - 1); 
+        }
+        
+        for(Character digito : Integer.toString(suma).toCharArray()) {
+            sumaAlternada += Integer.parseInt(digito.toString());
+        }
+        
+        Character aux = sumaAlternada == 10 ? 'k' : sumaAlternada.toString().charAt(0);
+        
+        if(!aux.equals(dv)){
+            forwardError("El rut ingresado es invalido");
+            return false;
+        }
+        
+        return true;
+    }
+    
+    private boolean validarTiposRutYDv(String rut,Character dv) throws ServletException, IOException {
+        try {
+            Integer.parseInt(rut);
+        }catch(NumberFormatException ex) {
+            forwardError("El rut solo debe contener numeros!");
+            return false;
+        }
+        
+        if(!Character.isDigit(dv) || Character.toLowerCase(dv) != 'k'){
+            forwardError("El digito verificador debe ser un numero entre 1-9 o una 'k'!");
+            return false;
+        }
+        
+        return true;
     }
     
     private boolean validarCorreo() {
