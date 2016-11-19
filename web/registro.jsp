@@ -32,6 +32,8 @@
                 <input class="form-textfield" type="text" name="user">
                 <label class="form-label" for="pass">Contraseña</label>
                 <input class="form-textfield" type="password" name="pass">
+                <label class="form-label" for="repetirPass">Contraseña</label>
+                <input class="form-textfield" type="password" name="repetirPass">
                 <button class="submit-button" type="submit">Registrar</button>
                 <span style="color:${color}">${mensaje}</span>
                 <div><a href="/" style="visibility:${mensaje != null ? 'visible' : 'hidden'}">Volver a inicio</a></div>
