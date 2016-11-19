@@ -77,27 +77,8 @@ public class RegistroServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Usuario user = new Usuario();
-        user.setRutUsuario((Integer.parseInt(request.getParameter("rut"))));
-        user.setDvUsuario(request.getParameter("dv").charAt(0));
-        user.setNombre(request.getParameter("nombre"));
-        user.setApPaterno(request.getParameter("apellidoPat"));
-        user.setApMaterno(request.getParameter("apellidoMat"));
-        user.setUserName(request.getParameter("user"));
-        user.setCorreo(request.getParameter("correo"));
-        Integer id = 1;
-        Rolusuario rol = rolUsuarioFacade.find(new Integer(1));
-        user.setIdRol(rol);
-        
-        try{
-            user.setPass(PasswordHash.createHash(request.getParameter("pass")));
-        } catch(Exception ex) {
-            System.err.println(ex.getMessage());
-            request.setAttribute("mensaje", "Error al guardar contraseña");
-        }
-        
         try {
-            usuarioFacade.create(user);
+            usuarioFacade.create(new Usuario());
         }catch(EJBException ex) {
             RequestDispatcher rd = request.getRequestDispatcher("registro.jsp");
             request.setAttribute("mensaje", "El rut ingresado ya se enceuntra registrado!");
