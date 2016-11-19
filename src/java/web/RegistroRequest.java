@@ -42,6 +42,10 @@ public class RegistroRequest {
         }
     }
     
+    public boolean ingresarUsuario() {
+        
+        return false;
+    }
     
     public boolean validarParametros() throws ServletException, IOException {
         if(!validarCadenasVacias()) 
