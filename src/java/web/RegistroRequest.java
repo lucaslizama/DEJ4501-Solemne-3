@@ -1,12 +1,14 @@
 package web;
 
 import db.Usuario;
+import ejb.RolusuarioFacade;
 import ejb.UsuarioFacade;
 import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Enumeration;
 import java.util.HashMap;
+import javax.ejb.EJBException;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.servlet.RequestDispatcher;
@@ -23,16 +25,19 @@ public class RegistroRequest {
 
     private HashMap<String,String> parameters;
     private UsuarioFacade usuarioFacade;
+    private RolusuarioFacade rolFacade;
     private HttpServletRequest request;
     private HttpServletResponse response;
     private RequestDispatcher rd;
     
-    public RegistroRequest(HttpServletRequest request, HttpServletResponse response,UsuarioFacade usuarioFacade) {
+    public RegistroRequest(HttpServletRequest request, HttpServletResponse response,UsuarioFacade usuarioFacade,RolusuarioFacade rolFacade) {
         this.usuarioFacade = usuarioFacade;
+        this.rolFacade = rolFacade;
         this.request = request;
         this.response = response;
         rd = request.getRequestDispatcher("registro.jsp");
         parameters = new HashMap<>();
+        
         Enumeration<String> nombres = request.getParameterNames();
         while(nombres.hasMoreElements()){
             //Inicializo un HashMap con los parametros y sus 
@@ -42,9 +47,27 @@ public class RegistroRequest {
         }
     }
     
-    public boolean ingresarUsuario() {
+    public boolean ingresarUsuario() throws ServletException, IOException {
+        Usuario user = new Usuario();
+        user.setRutUsuario(Integer.parseInt(parameters.get("rut")));
+        user.setDvUsuario(parameters.get("dv").charAt(0));
+        user.setApPaterno(parameters.get("apellidoPat"));
+        user.setApMaterno(parameters.get("apellidoMat"));
+        user.setNombre(parameters.get("nombre"));
+        user.setCorreo(parameters.get("correo"));
+        user.setIdRol(rolFacade.find(0));
+        user.setUserName(parameters.get("user"));
+        user.setPass(parameters.get("pass"));
         
-        return false;
+        try {
+            usuarioFacade.create(user);
+        } catch(EJBException ex) {
+            forwardError("Error de sistema al ingresar usuario");
+            return false;
+        }
+        
+        forwardSuccess();
+        return true;
     }
     
     public boolean validarParametros() throws ServletException, IOException {
@@ -71,24 +94,21 @@ public class RegistroRequest {
     }
     
     private boolean validarDigitoVerificador(String rut,Character dv) throws ServletException, IOException{
-        int factor = 9;
+        int factor = 2;
         Integer suma = 0;
-        Integer sumaAlternada = 0;
-        char[] digitos;
+        Integer modulo;
+        Integer digitoVerificador;
         
         for (int i = rut.length() - 1; i >= 0; i--) {
             Character digito = rut.charAt(i);
             suma += Integer.parseInt(digito.toString()) * factor;
-            factor = (factor - 1) < 4 ? 9 : (factor - 1); 
+            factor = (factor + 1) > 7 ? 2 : (factor + 1); 
         }
 
-        digitos = suma.toString().toCharArray();
+        modulo = suma % 11;
+        digitoVerificador = 11 - modulo; 
         
-        sumaAlternada += Integer.parseInt(Character.toString(digitos[2]));
-        sumaAlternada -= Integer.parseInt(Character.toString(digitos[1]));
-        sumaAlternada += Integer.parseInt(Character.toString(digitos[0]));
-        
-        Character aux = sumaAlternada == 10 ? 'k' : sumaAlternada.toString().charAt(0);
+        Character aux = digitoVerificador == 10 ? 'k' : digitoVerificador.toString().charAt(0);
         
         if(!aux.equals(dv)){
             forwardError("El rut ingresado es invalido");
@@ -162,6 +182,12 @@ public class RegistroRequest {
     private void forwardError(String message) throws ServletException, IOException {
         request.setAttribute("mensaje", message);
         request.setAttribute("color", "red");
+        rd.forward(request, response);
+    }
+    
+    private void forwardSuccess() throws ServletException, IOException {
+        request.setAttribute("mensaje", "Registrado con exito!");
+        request.setAttribute("color", "green");
         rd.forward(request, response);
     }
 }

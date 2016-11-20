@@ -5,8 +5,10 @@
  */
 package web;
 
+import db.Rolusuario;
 import db.Usuario;
 import ejb.AbstractFacade;
+import ejb.RolusuarioFacade;
 import ejb.UsuarioFacade;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -57,6 +59,7 @@ public class RegistroRequestTest {
         HttpServletRequest request = mock(HttpServletRequest.class);
         HttpServletResponse response = mock(HttpServletResponse.class);
         UsuarioFacade usuarioFacade = mock(UsuarioFacade.class);
+        RolusuarioFacade rolFacade = mock(RolusuarioFacade.class);
         List<String> nombres = new ArrayList<String>();
         
         nombres.add("rut");
@@ -69,8 +72,8 @@ public class RegistroRequestTest {
         nombres.add("pass");
         nombres.add("repetirPass");
         
-        when(request.getParameter("rut")).thenReturn("12345678");
-        when(request.getParameter("dv")).thenReturn("5");
+        when(request.getParameter("rut")).thenReturn("18464695");
+        when(request.getParameter("dv")).thenReturn("1");
         when(request.getParameter("nombre")).thenReturn("Lucas");
         when(request.getParameter("apellidoPat")).thenReturn("Lizama");
         when(request.getParameter("apellidoMat")).thenReturn("Monje");
@@ -80,9 +83,9 @@ public class RegistroRequestTest {
         when(request.getParameter("repetirPass")).thenReturn("lol1234");
         when(request.getParameterNames()).thenReturn(enumeration(nombres));
         when(usuarioFacade.findAll()).thenReturn(new ArrayList<Usuario>());
+        when(rolFacade.find(1)).thenReturn(new Rolusuario(1, "Estandar"));
         
-        
-        RegistroRequest rr = new RegistroRequest(request, response, usuarioFacade);
+        RegistroRequest rr = new RegistroRequest(request, response, usuarioFacade, rolFacade);
         try {
             assertTrue(rr.validarParametros());
         }catch (IOException ex){
@@ -90,42 +93,5 @@ public class RegistroRequestTest {
         }catch(ServletException ex) {
             fail("Error de servlet: " + ex.getMessage());
         }
-    }
-
-    /**
-     * Test of ingresarUsuario method, of class RegistroRequest.
-     */
-    @Test
-    public void testIngresarUsuario() {
-        HttpServletRequest request = mock(HttpServletRequest.class);
-        HttpServletResponse response = mock(HttpServletResponse.class);
-        UsuarioFacade usuarioFacade = mock(UsuarioFacade.class);
-        List<String> nombres = new ArrayList<String>();
-        
-        nombres.add("rut");
-        nombres.add("dv");
-        nombres.add("nombre");
-        nombres.add("apellidoPat");
-        nombres.add("apellidoMat");
-        nombres.add("correo");
-        nombres.add("user");
-        nombres.add("pass");
-        nombres.add("repetirPass");
-        
-        when(request.getParameter("rut")).thenReturn("12345678");
-        when(request.getParameter("dv")).thenReturn("5");
-        when(request.getParameter("nombre")).thenReturn("Lucas");
-        when(request.getParameter("apellidoPat")).thenReturn("Lizama");
-        when(request.getParameter("apellidoMat")).thenReturn("Monje");
-        when(request.getParameter("correo")).thenReturn("lucaslizama3@hotmail.com");
-        when(request.getParameter("user")).thenReturn("lucaslizama3");
-        when(request.getParameter("pass")).thenReturn("lol1234");
-        when(request.getParameter("repetirPass")).thenReturn("lol1234");
-        when(request.getParameterNames()).thenReturn(enumeration(nombres));
-        when(usuarioFacade.findAll()).thenReturn(new ArrayList<Usuario>());
-        
-        
-        fail("The test case is a prototype.");
-    }
-    
+    }   
 }

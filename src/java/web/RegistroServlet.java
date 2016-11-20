@@ -77,15 +77,14 @@ public class RegistroServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RegistroRequest rr = new RegistroRequest(request, response, usuarioFacade);
-        rr.validarParametros();
+        RegistroRequest rr = new RegistroRequest(request, response, usuarioFacade, rolUsuarioFacade);
+        if(!rr.validarParametros()){
+            return;
+        }
         
-        
-        
-        RequestDispatcher rd = request.getRequestDispatcher("registro.jsp");
-        request.setAttribute("mensaje", "Registrado con exito!");
-        request.setAttribute("color", "green");
-        rd.forward(request, response);
+        if(!rr.ingresarUsuario()){
+            return;
+        }
     }
 
     /**
