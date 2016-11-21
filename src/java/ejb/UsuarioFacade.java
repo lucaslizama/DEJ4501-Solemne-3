@@ -6,9 +6,11 @@
 package ejb;
 
 import db.Usuario;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -26,6 +28,12 @@ public class UsuarioFacade extends AbstractFacade<Usuario> {
 
     public UsuarioFacade() {
         super(Usuario.class);
+    }
+    
+    public Usuario findByRut(int rut) {
+        TypedQuery consulta = em.createNamedQuery("Usuario.findByRutUsuario", Usuario.class);
+        List<Usuario> lista = consulta.setParameter("rutUsuario", rut).getResultList();
+        return lista.get(0);
     }
     
 }

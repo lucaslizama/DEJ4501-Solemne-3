@@ -4,6 +4,7 @@
     Author     : lucas
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,11 +13,23 @@
         <title>Inicio Cruceros</title>
     </head>
     <body>
-        <h1>Bienvenido</h1>
+        <c:if test="${usuario != null}">
+            <h1>Bienvenido ${usuario.nombre} ${usuario.apPaterno}</h1>
+        </c:if> 
         <ol>
-            <li><a href="/registro">Registrarse</a></li>
-            <li><a href="/login">Login</a></li>
-            <li><a href="/cotizar">Cotizar Pasajes</a></li>
+            <c:choose>
+                <c:when test="${usuario == null}">
+                    <li><a href="/registro">Registrarse</a></li>
+                    <li><a href="/login">Login</a></li>
+                </c:when>
+                <c:otherwise>
+                    <c:if test="${rol.nombreRol.equals('Administrador')}">
+                        <li><a href="/admin">Panel Administrador</a></li>
+                    </c:if>
+                    <li><a href="/cotizar">Cotizar Pasajes</a></li>
+                    <li><a href="/logout">Salir</a></li>
+                </c:otherwise>
+            </c:choose>
         </ol>
     </body>
 </html>

@@ -1,5 +1,6 @@
 package web;
 
+import db.Rolusuario;
 import db.Usuario;
 import ejb.RolusuarioFacade;
 import ejb.UsuarioFacade;
@@ -14,6 +15,8 @@ import javax.mail.internet.InternetAddress;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import security.PasswordHash;
 
 /**
  *
@@ -35,7 +38,6 @@ public class RegistroRequest {
         this.rolFacade = rolFacade;
         this.request = request;
         this.response = response;
-        rd = request.getRequestDispatcher("registro.jsp");
         parameters = new HashMap<>();
         
         Enumeration<String> nombres = request.getParameterNames();
@@ -55,9 +57,15 @@ public class RegistroRequest {
         user.setApMaterno(parameters.get("apellidoMat"));
         user.setNombre(parameters.get("nombre"));
         user.setCorreo(parameters.get("correo"));
-        user.setIdRol(rolFacade.find(0));
+        user.setIdRol(rolFacade.find(1));
         user.setUserName(parameters.get("user"));
-        user.setPass(parameters.get("pass"));
+        
+        try {
+            user.setPass(PasswordHash.createHash(parameters.get("pass")));   
+        } catch(Exception ex) {
+            System.err.println(ex.getMessage());
+            return false;
+        }
         
         try {
             usuarioFacade.create(user);
@@ -180,14 +188,19 @@ public class RegistroRequest {
     }
     
     private void forwardError(String message) throws ServletException, IOException {
+        rd = request.getRequestDispatcher("registro.jsp");
         request.setAttribute("mensaje", message);
         request.setAttribute("color", "red");
         rd.forward(request, response);
     }
     
     private void forwardSuccess() throws ServletException, IOException {
-        request.setAttribute("mensaje", "Registrado con exito!");
-        request.setAttribute("color", "green");
+        Usuario user = usuarioFacade.findByRut(Integer.parseInt(parameters.get("rut")));
+        Rolusuario rol = user.getIdRol();
+        HttpSession sesion = request.getSession();
+        sesion.setAttribute("usuario", user);
+        sesion.setAttribute("rol", rol);
+        rd = request.getRequestDispatcher("index.jsp");
         rd.forward(request, response);
     }
 }
