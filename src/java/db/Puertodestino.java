@@ -6,20 +6,22 @@
 package db;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -49,9 +51,8 @@ public class Puertodestino implements Serializable {
     @Size(min = 1, max = 20)
     @Column(name = "nombre_puerto")
     private String nombrePuerto;
-    @JoinColumn(name = "id_compra", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Compra idCompra;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idDestino")
+    private List<Compra> compraList;
 
     public Puertodestino() {
     }
@@ -90,12 +91,13 @@ public class Puertodestino implements Serializable {
         this.nombrePuerto = nombrePuerto;
     }
 
-    public Compra getIdCompra() {
-        return idCompra;
+    @XmlTransient
+    public List<Compra> getCompraList() {
+        return compraList;
     }
 
-    public void setIdCompra(Compra idCompra) {
-        this.idCompra = idCompra;
+    public void setCompraList(List<Compra> compraList) {
+        this.compraList = compraList;
     }
 
     @Override

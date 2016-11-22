@@ -39,9 +39,6 @@ public class Pasaje implements Serializable {
     @JoinColumn(name = "id_compra", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Compra idCompra;
-    @JoinColumn(name = "id_usuario", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Usuario idUsuario;
 
     public Pasaje() {
     }
@@ -64,14 +61,6 @@ public class Pasaje implements Serializable {
 
     public void setIdCompra(Compra idCompra) {
         this.idCompra = idCompra;
-    }
-
-    public Usuario getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(Usuario idUsuario) {
-        this.idUsuario = idUsuario;
     }
 
     @Override
