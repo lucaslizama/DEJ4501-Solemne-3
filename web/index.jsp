@@ -23,7 +23,7 @@
                     <li><a href="/login">Login</a></li>
                 </c:when>
                 <c:otherwise>
-                    <c:if test="${rol.nombreRol.equals('Administrador')}">
+                    <c:if test="${usuario.idRol.nombreRol.equals('Administrador')}">
                         <li><a href="/admin">Panel Administrador</a></li>
                     </c:if>
                     <li><a href="/cotizar">Cotizar Pasajes</a></li>

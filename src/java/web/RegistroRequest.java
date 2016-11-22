@@ -16,6 +16,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.mindrot.jbcrypt.BCrypt;
 import security.PasswordHash;
 
 /**
@@ -59,13 +60,7 @@ public class RegistroRequest {
         user.setCorreo(parameters.get("correo"));
         user.setIdRol(rolFacade.find(1));
         user.setUserName(parameters.get("user"));
-        
-        try {
-            user.setPass(PasswordHash.createHash(parameters.get("pass")));   
-        } catch(Exception ex) {
-            System.err.println(ex.getMessage());
-            return false;
-        }
+        user.setPass(BCrypt.hashpw(parameters.get("pass"), BCrypt.gensalt(12)));
         
         try {
             usuarioFacade.create(user);
@@ -199,7 +194,6 @@ public class RegistroRequest {
         Rolusuario rol = user.getIdRol();
         HttpSession sesion = request.getSession();
         sesion.setAttribute("usuario", user);
-        sesion.setAttribute("rol", rol);
         rd = request.getRequestDispatcher("index.jsp");
         rd.forward(request, response);
     }
