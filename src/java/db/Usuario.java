@@ -88,8 +88,6 @@ public class Usuario implements Serializable {
     private String pass;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
     private List<Compra> compraList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
-    private List<Pasaje> pasajeList;
     @JoinColumn(name = "id_rol", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Rolusuario idRol;
@@ -191,15 +189,6 @@ public class Usuario implements Serializable {
 
     public void setCompraList(List<Compra> compraList) {
         this.compraList = compraList;
-    }
-
-    @XmlTransient
-    public List<Pasaje> getPasajeList() {
-        return pasajeList;
-    }
-
-    public void setPasajeList(List<Pasaje> pasajeList) {
-        this.pasajeList = pasajeList;
     }
 
     public Rolusuario getIdRol() {
