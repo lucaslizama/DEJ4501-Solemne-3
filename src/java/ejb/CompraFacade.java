@@ -6,9 +6,11 @@
 package ejb;
 
 import db.Compra;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -27,5 +29,11 @@ public class CompraFacade extends AbstractFacade<Compra> {
     public CompraFacade() {
         super(Compra.class);
     }
+    
+    public Compra BuscarPorIdUsuario(int id) {
+        TypedQuery consulta = em.createNamedQuery("Compra.findByIdUsuario", Compra.class);
+        List<Compra> lista = consulta.setParameter("idUsuario", id).getResultList();
+        return lista.get(0);
+    } 
     
 }
