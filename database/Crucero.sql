@@ -82,7 +82,7 @@ CREATE TABLE compra(
     id_habitacion int not null,
     id_forma_pago int not null,
     fecha_enbarque date not null,
-    fecha_desenbarque date,
+    fecha_desenbarque date not null,
     numero_pasajeros int not null,
     valor_pasaje int not null,
     PRIMARY KEY(id),
