@@ -29,10 +29,9 @@ public class ListaUsuarioServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        CompraFacade dao = new CompraFacade();
         
-        List<Compra> lista = dao.findAll();
-        
+        int id = Integer.parseInt(request.getParameter("idUsuario"));        
+        List<Compra> lista = (List<Compra>) cf.BuscarPorIdUsuario(id);        
         request.setAttribute("listaCompra", lista);
         request.getRequestDispatcher("mostrarListaUsuario.jsp").forward(request, response);
         
