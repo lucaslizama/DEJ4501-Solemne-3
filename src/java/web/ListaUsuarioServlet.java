@@ -6,6 +6,7 @@
 package web;
 
 import db.Compra;
+import db.Usuario;
 import ejb.CompraFacade;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -21,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Pancho
  */
-@WebServlet(name = "ListaUsuarioServlet", urlPatterns = {"/ListaUsuarioServlet"})
+@WebServlet(name = "ListaUsuarioServlet", urlPatterns = {"/cotizaciones"})
 public class ListaUsuarioServlet extends HttpServlet {
 
     @EJB
@@ -29,12 +30,11 @@ public class ListaUsuarioServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        int id = Integer.parseInt(request.getParameter("idUsuario"));
-        List<Compra> lista = (List<Compra>) cf.BuscarPorIdUsuario(id);
+        //La entidad usuario tiene una lista con todas las compras asociadas a el.
+        Usuario user = (Usuario)request.getSession().getAttribute("usuario");
+        List<Compra> lista = user.getCompraList();
         request.setAttribute("listaCompra", lista);
         request.getRequestDispatcher("mostrarListaUsuario.jsp").forward(request, response);
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
