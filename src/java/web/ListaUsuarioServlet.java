@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Pancho
  */
-@WebServlet(name = "ListaUsuarioServlet", urlPatterns = {"/ListaUsuarioServlet"})
+@WebServlet(name = "ListaUsuarioServlet", urlPatterns = {"/cotizaciones"})
 public class ListaUsuarioServlet extends HttpServlet {
 
     @EJB
@@ -34,7 +34,6 @@ public class ListaUsuarioServlet extends HttpServlet {
         List<Compra> lista = user.getCompraList();
         request.setAttribute("listaCompra", lista);
         request.getRequestDispatcher("mostrarListaUsuario.jsp").forward(request, response);
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
