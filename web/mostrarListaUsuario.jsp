@@ -23,17 +23,21 @@
                 <th> Lugar Origen </th>
                 <th> Lugar Destino </th>
                 <th> Habitacion </th>
-            </thead>>
-            <c:forEach var="compra" items="${listaCompra}">
-                <tr>
-                    <td>${usuario.rut}-${usuario.dv}</td>
-                    <td>${compra.fechaEmbarque}</td>
-                    <td>${compra.fechaDesenbarque}</td>
-                    <td>${compra.puertoOrigen.nombre}</td>
-                    <td>${compra.puertoDestino.nombre}</td>
-                    <td>${compra.habitacion.idTipoHabitacion.nombre}</td>
-                </tr>                
-            </c:forEach>
+            </thead>
+            <tbody>
+                <c:if test="${listaCompra != null}">
+                    <c:forEach var="compra" items="${listaCompra}">
+                        <tr>
+                            <td>${usuario.rut}-${usuario.dv}</td>
+                            <td>${compra.fechaEmbarque}</td>
+                            <td>${compra.fechaDesenbarque}</td>
+                            <td>${compra.puertoOrigen.nombre}</td>
+                            <td>${compra.puertoDestino.nombre}</td>
+                            <td>${compra.habitacion.idTipoHabitacion.nombre}</td>
+                        </tr>                
+                    </c:forEach>
+                </c:if>
+            </tbody>
         </table>
     </body>
 </html>
