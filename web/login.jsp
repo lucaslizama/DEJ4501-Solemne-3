@@ -15,9 +15,9 @@
         <form action="login.do" method="POST">
             <fieldset></fieldset>
             Usuario <input type="text" name="usuario"<br>
-                Contraseña <input type="password" name="pass"><br>
-                <button type="submit">Login</button>
-            </fieldset>
-        </form>
-    </body>
+            Contraseña <input type="password" name="pass"><br>
+            <button type="submit">Login</button>
+        </fieldset>
+    </form>
+</body>
 </html>

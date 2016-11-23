@@ -28,7 +28,7 @@ CREATE TABLE usuario(
 CREATE TABLE puertoOrigen(
     id int auto_increment,
     numero_puerto int not null,
-    nombre_puerto varchar(20) not null,
+    nombre_puerto varchar(40) not null,
     PRIMARY KEY(id)
 );
 
@@ -36,7 +36,7 @@ CREATE TABLE puertoOrigen(
 CREATE TABLE puertoDestino(
     id int auto_increment,
     numero_puerto int not null,
-    nombre_puerto varchar(20) not null,
+    nombre_puerto varchar(40) not null,
     PRIMARY KEY(id)
 );
 
@@ -44,7 +44,7 @@ CREATE TABLE puertoDestino(
 CREATE TABLE barco(
     id int auto_increment,
     patente varchar(20) not null,
-    nombre_barco varchar(20) not null,
+    nombre_barco varchar(30) not null,
     PRIMARY KEY(id)
 );
 
@@ -87,11 +87,11 @@ CREATE TABLE compra(
     valor_pasaje int not null,
     PRIMARY KEY(id),
     FOREIGN KEY(id_usuario) REFERENCES usuario(id),
-    foreign key(id_origen) references puertoOrigen(id),
-    foreign key(id_destino) references puertoDestino(id),
-    foreign key(id_barco) references barco(id),
-    foreign key(id_habitacion) references habitacion(id),
-    foreign key(id_forma_pago) references formaPago(id)
+    FOREIGN KEY(id_origen) REFERENCES puertoOrigen(id),
+    FOREIGN KEY(id_destino) REFERENCES puertoDestino(id),
+    FOREIGN KEY(id_barco) REFERENCES barco(id),
+    FOREIGN KEY(id_habitacion) REFERENCES habitacion(id),
+    FOREIGN KEY(id_forma_pago) REFERENCES formaPago(id)
 );
 
 -- Tabla pasaje--
@@ -107,12 +107,48 @@ insert into rolusuario (nombre_rol) values ('Estandar');
 insert into rolusuario (nombre_rol) values ('Administrador');
 
 -- Insertar datos barcos--
-insert into barco(patente,nombre_barco) values ('ABCD1234', 'holi');
-insert into barco(patente,nombre_barco) values ('MVNT9574', 'holi2');
-insert into barco(patente,nombre_barco) values ('PEJT5154', 'holi3');
-insert into barco(patente,nombre_barco) values ('IDJE7651', 'holi4');
+insert into barco(patente,nombre_barco) values ('ABCD1234', 'Royal Caribbean');
+insert into barco(patente,nombre_barco) values ('MVNT9574', 'MSC Cruceros');
+insert into barco(patente,nombre_barco) values ('PEJT5154', 'Costa Cruceros');
+insert into barco(patente,nombre_barco) values ('IDJE7651', 'Celebrity Infinity Cruises');
+insert into barco(patente,nombre_barco) values ('NKFS8510', 'Carnival Cruises');
+insert into barco(patente,nombre_barco) values ('AWCV9512', 'Pullmantur Cruises');
 
 -- Insertar datos formas de pago--
 insert into formaPago(nombre) values ('WebPay');
 insert into formaPago(nombre) values ('Credito');
 insert into formaPago(nombre) values ('Paypal');
+
+-- Insertar datos puertosOrigen--
+insert into puertoOrigen(numero_puerto,nombre_puerto) values (1, 'Puerto Barcelona');
+insert into puertoOrigen(numero_puerto,nombre_puerto) values (2, 'Puerto de Baleares');
+insert into puertoOrigen(numero_puerto,nombre_puerto) values (3, 'Puerto de Santa Cruz de Tenerife');
+insert into puertoOrigen(numero_puerto,nombre_puerto) values (4, 'Puerto de Las Palmas');
+insert into puertoOrigen(numero_puerto,nombre_puerto) values (5, 'Puerto de Málaga');
+insert into puertoOrigen(numero_puerto,nombre_puerto) values (6, 'Puerto de la Bahía de Cádiz');
+insert into puertoOrigen(numero_puerto,nombre_puerto) values (7, 'Puerto de Valencia');
+insert into puertoOrigen(numero_puerto,nombre_puerto) values (8, 'Puerto de Vigo');
+insert into puertoOrigen(numero_puerto,nombre_puerto) values (9, 'Puerto de La Coruña');
+insert into puertoOrigen(numero_puerto,nombre_puerto) values (10, 'Puerto de Cartagena');
+
+-- Insertar datos puertosDestino--
+insert into puertoDestino(numero_puerto,nombre_puerto) values (1, 'Puerto Barcelona');
+insert into puertoDestino(numero_puerto,nombre_puerto) values (2, 'Puerto de Baleares');
+insert into puertoDestino(numero_puerto,nombre_puerto) values (3, 'Puerto de Santa Cruz de Tenerife');
+insert into puertoDestino(numero_puerto,nombre_puerto) values (4, 'Puerto de Las Palmas');
+insert into puertoDestino(numero_puerto,nombre_puerto) values (5, 'Puerto de Málaga');
+insert into puertoDestino(numero_puerto,nombre_puerto) values (6, 'Puerto de la Bahía de Cádiz');
+insert into puertoDestino(numero_puerto,nombre_puerto) values (7, 'Puerto de Valencia');
+insert into puertoDestino(numero_puerto,nombre_puerto) values (8, 'Puerto de Vigo');
+insert into puertoDestino(numero_puerto,nombre_puerto) values (9, 'Puerto de La Coruña');
+insert into puertoDestino(numero_puerto,nombre_puerto) values (10, 'Puerto de Cartagena');
+
+-- Insertar datos tipoHabitacion
+insert into tipoHabitacion(nombre,cantidad_personas) values ('Camarote Interior',10);
+insert into tipoHabitacion(nombre,cantidad_personas) values ('Camarote Oceanview',20);
+insert into tipoHabitacion(nombre,cantidad_personas) values ('Camarote con balcón',30);
+insert into tipoHabitacion(nombre,cantidad_personas) values ('Suite',40);
+insert into tipoHabitacion(nombre,cantidad_personas) values ('Suite de lujo',50);
+
+--Insertar datos usuario
+insert into usuario(id_rol,rut_usuario,dv_usuario,nombre,ap_paterno,ap_materno,user_name,correo,pass,) values (1,'17486227','3','Francisco','Rodriguez','Torres','Pancho','fcorodriguez@gmail.com','1234');

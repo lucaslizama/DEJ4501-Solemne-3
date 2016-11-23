@@ -26,15 +26,15 @@ public class ListaUsuarioServlet extends HttpServlet {
 
     @EJB
     private CompraFacade cf;
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        
-        int id = Integer.parseInt(request.getParameter("idUsuario"));        
-        List<Compra> lista = (List<Compra>) cf.BuscarPorIdUsuario(id);        
+
+        int id = Integer.parseInt(request.getParameter("idUsuario"));
+        List<Compra> lista = (List<Compra>) cf.BuscarPorIdUsuario(id);
         request.setAttribute("listaCompra", lista);
         request.getRequestDispatcher("mostrarListaUsuario.jsp").forward(request, response);
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
