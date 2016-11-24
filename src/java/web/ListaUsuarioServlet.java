@@ -32,7 +32,7 @@ public class ListaUsuarioServlet extends HttpServlet {
             throws ServletException, IOException {
         //La entidad usuario tiene una lista con todas las compras asociadas a el.
         Usuario user = (Usuario)request.getSession().getAttribute("usuario");
-        List<Compra> lista = user.getCompraList();
+        List<Compra> lista = user.getCompraList(); 
         request.setAttribute("listaCompra", lista);
         request.getRequestDispatcher("mostrarListaUsuario.jsp").forward(request, response);
     }

@@ -29,10 +29,4 @@ public class CompraFacade extends AbstractFacade<Compra> {
     public CompraFacade() {
         super(Compra.class);
     }
-    
-    public Compra BuscarPorIdUsuario(int id) {
-        TypedQuery consulta = em.createNamedQuery("Usuario.findByIdUsuario", Compra.class);
-        List<Compra> lista = consulta.setParameter("rutUsuario", id).getResultList();
-        return lista.get(0);
-    }
 }
