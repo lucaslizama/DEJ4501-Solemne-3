@@ -14,20 +14,21 @@
     </head>
     <body>
         <c:if test="${usuario != null}">
-            <h1>Bienvenido ${usuario.nombre} ${usuario.apPaterno} Ingrese sus datos para realizar la cotizacion</h1>
+            <h1>Bienvenido ${usuario.nombre} ${usuario.apPaterno}</h1>
         </c:if>
         <form action="cotizacion.do" method="POST">
             <fieldset>
+                <legend>Ingrese sus datos para realizar la cotizacion</legend>
                 <label class="form-label" for="puertoOrigen">Puerto Origen</label>
                 <select name="puertoOrigen">
                     <c:forEach var="puertoOrigen" items="puerOrigen">
-                        <option value="${puertoOrigen.id}">${puertoOrigen.nombre_puerto}</option>
+                        <option value="${puertoOrigen.id}">${puertoOrigen.nombrePuerto}</option>
                     </c:forEach>
                 </select><br>
                 <label class="form-label" for="puertoDestino">Puerto Destino</label>
                 <select name="puertoDestino">
                     <c:forEach var="puertoDestino" items="puerDestino">
-                        <option value="${puertoDestino.id}">${puertoDestino.nombre_puerto}</option>
+                        <option value="${puertoDestino.id}">${puertoDestino.nombrePuerto}</option>
                     </c:forEach>
                 </select><br> 
                 <label class="form-label" for="nomCrucero">Nombre del Crucero</label>

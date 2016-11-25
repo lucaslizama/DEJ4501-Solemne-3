@@ -5,18 +5,8 @@
  */
 package web;
 
-import db.Compra;
-import db.Pasaje;
-import db.Rolusuario;
-import db.Usuario;
-import ejb.RolusuarioFacade;
-import ejb.UsuarioFacade;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
-import javax.ejb.EJB;
-import javax.ejb.EJBException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -28,13 +18,9 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author lucas
  */
-@WebServlet(name = "RegistroServlet", urlPatterns = {"/registro"})
-public class RegistroServlet extends HttpServlet {
-    @EJB
-    private UsuarioFacade usuarioFacade;
-    @EJB
-    private RolusuarioFacade rolUsuarioFacade;
-    
+@WebServlet(name = "LogoutServlet", urlPatterns = {"/logout"})
+public class LogoutServlet extends HttpServlet {
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -46,7 +32,15 @@ public class RegistroServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        if(request.getSession(false).getAttribute("usuario") == null) {
+            RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+            rd.forward(request, response);
+            return;
+        }
         
+        request.getSession(false).setAttribute("usuario", null);
+        RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+        rd.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -61,8 +55,7 @@ public class RegistroServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher rd = request.getRequestDispatcher("registro.jsp");
-        rd.forward(request, response);
+        processRequest(request, response);
     }
 
     /**
@@ -76,14 +69,7 @@ public class RegistroServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RegistroRequest rr = new RegistroRequest(request, response, usuarioFacade, rolUsuarioFacade);
-        if(!rr.validarParametros()){
-            return;
-        }
-        
-        if(!rr.ingresarUsuario()){
-            return;
-        }
+        processRequest(request, response);
     }
 
     /**

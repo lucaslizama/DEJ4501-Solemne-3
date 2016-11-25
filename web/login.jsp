@@ -12,11 +12,15 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <form action="login.do" method="POST">
-            <fieldset></fieldset>
-            Usuario <input type="text" name="usuario"<br>
-            Contraseña <input type="password" name="pass"><br>
-            <button type="submit">Login</button>
+        <form action="/login" method="POST">
+            <fieldset>
+                <legend>Ingrese sus credenciales</legend>
+                <label for="username">Usuario</label> 
+                <input type="text" name="username"<br>
+                <label for="pass">Contraseña</label>
+                <input type="password" name="pass"><br>
+                <button type="submit">Login</button>
+            </fieldset>
         </fieldset>
     </form>
 </body>
