@@ -67,14 +67,16 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         if(request.getSession().getAttribute("usuario") != null){
-            RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-            rd.forward(request, response);
+            response.sendRedirect("/");
+            //RequestDispatcher rd = request.getRequestDispatcher("/");
+            //rd.forward(request, response);
         }
         
         if(request.getParameter("username") == null || request.getParameter("pass") == null){
             request.setAttribute("mensaje", null);
-            RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
-            rd.forward(request, response);
+            response.sendRedirect("/");
+            //RequestDispatcher rd = request.getRequestDispatcher("/");
+            //rd.forward(request, response);
         }
         
         String username = request.getParameter("username");
@@ -98,8 +100,7 @@ public class LoginServlet extends HttpServlet {
         
         if(BCrypt.checkpw(password, user.getPass())){
             request.getSession().setAttribute("usuario", user);
-            RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-            rd.forward(request, response);
+            response.sendRedirect("/");
             return;
         } else {
             request.setAttribute("mensaje", "La contraseña es incorrecta");
