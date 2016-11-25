@@ -103,10 +103,12 @@ CREATE TABLE pasaje(
 );
 
 -- Insertar datos necesarios--
+alter table rolusuario auto_increment = 1;
 insert into rolusuario (nombre_rol) values ('Estandar');
 insert into rolusuario (nombre_rol) values ('Administrador');
 
 -- Insertar datos barcos--
+alter table barco auto_increment = 1;
 insert into barco(patente,nombre_barco) values ('ABCD1234', 'Royal Caribbean');
 insert into barco(patente,nombre_barco) values ('MVNT9574', 'MSC Cruceros');
 insert into barco(patente,nombre_barco) values ('PEJT5154', 'Costa Cruceros');
@@ -115,11 +117,13 @@ insert into barco(patente,nombre_barco) values ('NKFS8510', 'Carnival Cruises');
 insert into barco(patente,nombre_barco) values ('AWCV9512', 'Pullmantur Cruises');
 
 -- Insertar datos formas de pago--
+alter table formaPago auto_increment = 1;
 insert into formaPago(nombre) values ('WebPay');
 insert into formaPago(nombre) values ('Credito');
 insert into formaPago(nombre) values ('Paypal');
 
 -- Insertar datos puertosOrigen--
+alter table puertoOrigen auto_increment = 1;
 insert into puertoOrigen(numero_puerto,nombre_puerto) values (1, 'Puerto Barcelona');
 insert into puertoOrigen(numero_puerto,nombre_puerto) values (2, 'Puerto de Baleares');
 insert into puertoOrigen(numero_puerto,nombre_puerto) values (3, 'Puerto de Santa Cruz de Tenerife');
@@ -132,6 +136,7 @@ insert into puertoOrigen(numero_puerto,nombre_puerto) values (9, 'Puerto de La C
 insert into puertoOrigen(numero_puerto,nombre_puerto) values (10, 'Puerto de Cartagena');
 
 -- Insertar datos puertosDestino--
+alter table puertoDestino auto_increment = 1;
 insert into puertoDestino(numero_puerto,nombre_puerto) values (1, 'Puerto Barcelona');
 insert into puertoDestino(numero_puerto,nombre_puerto) values (2, 'Puerto de Baleares');
 insert into puertoDestino(numero_puerto,nombre_puerto) values (3, 'Puerto de Santa Cruz de Tenerife');
@@ -144,6 +149,7 @@ insert into puertoDestino(numero_puerto,nombre_puerto) values (9, 'Puerto de La 
 insert into puertoDestino(numero_puerto,nombre_puerto) values (10, 'Puerto de Cartagena');
 
 -- Insertar datos tipoHabitacion
+alter table tipoHabitacion auto_increment = 1;
 insert into tipoHabitacion(nombre,cantidad_personas) values ('Camarote Interior',10);
 insert into tipoHabitacion(nombre,cantidad_personas) values ('Camarote Oceanview',20);
 insert into tipoHabitacion(nombre,cantidad_personas) values ('Camarote con balcón',30);
@@ -151,4 +157,6 @@ insert into tipoHabitacion(nombre,cantidad_personas) values ('Suite',40);
 insert into tipoHabitacion(nombre,cantidad_personas) values ('Suite de lujo',50);
 
 --Insertar datos usuario
-insert into usuario(id_rol,rut_usuario,dv_usuario,nombre,ap_paterno,ap_materno,user_name,correo,pass,) values (1,'17486227','3','Francisco','Rodriguez','Torres','Pancho','fcorodriguez@gmail.com','1234');
+alter table usuario auto_increment = 1;
+insert into usuario(id_rol,rut_usuario,dv_usuario,nombre,ap_paterno,ap_materno,user_name,correo,pass,) values (1,'17486227','3','Francisco','Rodriguez','Torres','Pancho','fcorodriguez@gmail.com','$2a$12$YvSkLIIiaU/M1aWre9FrVeBnZcxkdI4.VjctxQuniM.b9ze1EN/Aq');
+insert into usuario(id_rol,rut_usuario,dv_usuario,nombre,ap_paterno,ap_materno,user_name,correo,pass,) values (2,'18464695','1','Lucas','Lizama','Monje','lucaslizama','lucaslizama3@hotmail.com','$2a$12$lMXksoqsluzWdzGpPVkLS.e2OaOvWq34D8egF/Jw0TIbElpmHMdya');
