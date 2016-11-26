@@ -1,12 +1,21 @@
-form{
+.login{
     margin: 1em 25%;
     font-family: Arial;
     font-size: 9.5px;
-    font-weight: normal ; 
+    font-weight: normal; 
     line-height: 12px;
     color: green;
     padding: 1em 3em;	
     width: 35%;
+}
+.form-label {
+    width: 150px;
+    display: block;
+}
+
+.form-textfield {
+    width: 150px;
+    text-align: center;
 }
 
 .button-login {

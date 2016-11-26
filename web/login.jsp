@@ -13,7 +13,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <form action="/login" method="POST" id="login">
+        <form action="/login" method="POST" class="login">
             <fieldset>
                 <legend>Ingrese sus credenciales</legend>
                 <label for="username">Usuario</label> 

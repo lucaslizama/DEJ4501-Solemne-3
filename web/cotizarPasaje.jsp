@@ -21,13 +21,13 @@
                 <legend>Ingrese sus datos para realizar la cotizacion</legend>
                 <label class="form-label" for="puertoOrigen">Puerto Origen</label>
                 <select name="puertoOrigen">
-                    <c:forEach var="puertoOrigen" items="puerOrigen">
+                    <c:forEach var="puertoOrigen" items="puertosOrigen">
                         <option value="${puertoOrigen.id}">${puertoOrigen.nombrePuerto}</option>
                     </c:forEach>
                 </select><br>
                 <label class="form-label" for="puertoDestino">Puerto Destino</label>
                 <select name="puertoDestino">
-                    <c:forEach var="puertoDestino" items="puerDestino">
+                    <c:forEach var="puertoDestino" items="puertosDestino">
                         <option value="${puertoDestino.id}">${puertoDestino.nombrePuerto}</option>
                     </c:forEach>
                 </select><br> 

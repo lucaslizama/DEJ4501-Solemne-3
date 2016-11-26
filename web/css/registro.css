@@ -1,8 +1,12 @@
 .registro-usuario-wrapper {
-    width: 280px;
-    margin-left: auto;
-    margin-right: auto;  
+    margin: 1em 25%;
+    font-family: Arial;
+    font-size: 9.5px;
+    font-weight: normal; 
+    line-height: 12px;
     color: green;
+    padding: 1em 3em;	
+    width: 35%;
 }
 
 .form-label {
