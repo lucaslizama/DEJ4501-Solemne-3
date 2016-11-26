@@ -160,6 +160,3 @@ insert into tipoHabitacion(nombre,cantidad_personas) values ('Suite de lujo',50)
 alter table usuario auto_increment = 1;
 insert into usuario(id_rol,rut_usuario,dv_usuario,nombre,ap_paterno,ap_materno,user_name,correo,pass,) values (1,'17486227','3','Francisco','Rodriguez','Torres','Pancho','fcorodriguez@gmail.com','$2a$12$YvSkLIIiaU/M1aWre9FrVeBnZcxkdI4.VjctxQuniM.b9ze1EN/Aq');
 insert into usuario(id_rol,rut_usuario,dv_usuario,nombre,ap_paterno,ap_materno,user_name,correo,pass,) values (2,'18464695','1','Lucas','Lizama','Monje','lucaslizama','lucaslizama3@hotmail.com','$2a$12$lMXksoqsluzWdzGpPVkLS.e2OaOvWq34D8egF/Jw0TIbElpmHMdya');
-
-
-

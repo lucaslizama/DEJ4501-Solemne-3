@@ -9,18 +9,17 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link type="text/css" rel="stylesheet" href="css/login.css"/>
         <title>JSP Page</title>
     </head>
     <body>
-        <form action="/login" method="POST" id="login">
+        <form action="/login" method="POST">
             <fieldset>
                 <legend>Ingrese sus credenciales</legend>
                 <label for="username">Usuario</label> 
                 <input type="text" name="username"<br>
                 <label for="pass">Contraseña</label>
                 <input type="password" name="pass"><br>
-                <button class="button-login" type="submit">Login</button>
+                <button type="submit">Login</button>
             </fieldset>
         </fieldset>
     </form>

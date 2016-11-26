@@ -15,7 +15,7 @@
     <body>
         <fieldset class="registro-usuario-wrapper">
             <legend>Ingrese sus datos</legend>
-            <form action="/registro" method="POST" >
+            <form action="/registro" method="POST">
                 <label class="form-label" for="rut">Rut </label>
                 <input class="form-textfield" type="text" name="rut">
                 <span> - </span>
