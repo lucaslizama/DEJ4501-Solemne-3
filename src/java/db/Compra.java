@@ -53,6 +53,8 @@ public class Compra implements Serializable {
     @Column(name = "fecha_enbarque")
     @Temporal(TemporalType.DATE)
     private Date fechaEnbarque;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "fecha_desenbarque")
     @Temporal(TemporalType.DATE)
     private Date fechaDesenbarque;
@@ -92,9 +94,10 @@ public class Compra implements Serializable {
         this.id = id;
     }
 
-    public Compra(Integer id, Date fechaEnbarque, int numeroPasajeros, int valorPasaje) {
+    public Compra(Integer id, Date fechaEnbarque, Date fechaDesenbarque, int numeroPasajeros, int valorPasaje) {
         this.id = id;
         this.fechaEnbarque = fechaEnbarque;
+        this.fechaDesenbarque = fechaDesenbarque;
         this.numeroPasajeros = numeroPasajeros;
         this.valorPasaje = valorPasaje;
     }

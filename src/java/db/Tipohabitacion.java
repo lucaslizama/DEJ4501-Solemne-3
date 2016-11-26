@@ -34,7 +34,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Tipohabitacion.findAll", query = "SELECT t FROM Tipohabitacion t"),
     @NamedQuery(name = "Tipohabitacion.findById", query = "SELECT t FROM Tipohabitacion t WHERE t.id = :id"),
     @NamedQuery(name = "Tipohabitacion.findByNombre", query = "SELECT t FROM Tipohabitacion t WHERE t.nombre = :nombre"),
-    @NamedQuery(name = "Tipohabitacion.findByCantidadPersonas", query = "SELECT t FROM Tipohabitacion t WHERE t.cantidadPersonas = :cantidadPersonas")})
+    @NamedQuery(name = "Tipohabitacion.findByCantidadPersonas", query = "SELECT t FROM Tipohabitacion t WHERE t.cantidadPersonas = :cantidadPersonas"),
+    @NamedQuery(name = "Tipohabitacion.findByValor", query = "SELECT t FROM Tipohabitacion t WHERE t.valor = :valor")})
 public class Tipohabitacion implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -49,6 +50,8 @@ public class Tipohabitacion implements Serializable {
     private String nombre;
     @Column(name = "cantidad_personas")
     private Integer cantidadPersonas;
+    @Column(name = "valor")
+    private Integer valor;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTipoHabitacion")
     private List<Habitacion> habitacionList;
 
@@ -86,6 +89,14 @@ public class Tipohabitacion implements Serializable {
 
     public void setCantidadPersonas(Integer cantidadPersonas) {
         this.cantidadPersonas = cantidadPersonas;
+    }
+
+    public Integer getValor() {
+        return valor;
+    }
+
+    public void setValor(Integer valor) {
+        this.valor = valor;
     }
 
     @XmlTransient

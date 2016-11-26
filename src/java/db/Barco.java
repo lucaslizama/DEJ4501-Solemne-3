@@ -49,7 +49,7 @@ public class Barco implements Serializable {
     private String patente;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 20)
+    @Size(min = 1, max = 30)
     @Column(name = "nombre_barco")
     private String nombreBarco;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idBarco")
