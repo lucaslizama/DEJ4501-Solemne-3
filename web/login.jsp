@@ -24,6 +24,7 @@
             </fieldset>
         </fieldset>
         <span style="color:${color}; font-size: 14pt; margin-top: 10px; display: block;">${mensaje}</span>
+        <li><a href="/index">Volver</a></li>
     </form>
 </body>
 </html>

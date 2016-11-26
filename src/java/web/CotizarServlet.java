@@ -124,9 +124,9 @@ public class CotizarServlet extends HttpServlet {
             return;
         }
 
-        SimpleDateFormat formato = new SimpleDateFormat();
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
         try {
-
+            
         } catch (Exception ex) {
         }
     }

@@ -37,6 +37,7 @@
                 <button class="submit-button" type="submit">Registrar</button>
                 <span style="color:${color}">${mensaje}</span>
                 <div><a href="/" style="visibility:${mensaje != null ? 'visible' : 'hidden'}">Volver a inicio</a></div>
+                <li><a href="/index">Volver</a></li>
             </form>
         </fieldset>
     </body>

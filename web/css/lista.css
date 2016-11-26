@@ -1,0 +1,50 @@
+/* 
+    Created on : Nov 26, 2016, 7:27:14 PM
+    Author     : Pancho
+*/
+.button{
+    font-size:12px; 
+    font-family:Verdana,Helvetica; 
+    font-weight:bold; 
+    color:#0000FF; 
+    background:#A4C1FF; 
+    border:2px solid blue;
+    width:150px; 
+    height:25px;
+    box-shadow: 3px 3px 2px #888888;	
+}
+
+table{
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    background: white;
+
+    height: 320px;
+    margin: 1px;
+    max-width: 600px;
+    padding:5px;
+    width: 100%;
+    box-shadow: 0 1px 1px rgba(1, 1, 1, 1);
+    animation: float 5s infinite;
+}
+
+h3{
+    color: #A4C1FF;
+    font-size: 30px;
+    font-weight: 400;
+    font-style:normal;
+    font-family: "Roboto", helvetica, arial, sans-serif;
+    text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+    text-transform:uppercase;
+}
+td{
+    background:#FFFFFF;
+    padding:20px;
+    text-align:left;
+    vertical-align:middle;
+    font-weight:300;
+    font-size:18px;
+    text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+    border-right: 2px solid #C1C3D1;
+    border-top: 2px solid #3d3d3d;
+}

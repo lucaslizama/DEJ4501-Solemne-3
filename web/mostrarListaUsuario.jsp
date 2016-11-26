@@ -11,6 +11,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="css/lista.css"/>
         <title>JSP Page</title>
     </head>
     <body>
@@ -38,5 +39,6 @@
                 </c:if>
             </tbody>
         </table>
+        <li><a href="/index">Volver</a></li>
     </body>
 </html>
