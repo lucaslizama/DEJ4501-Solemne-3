@@ -10,9 +10,11 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="css/registro.css" type="text/css"><link>
         <title>Inicio Cruceros</title>
     </head>
     <body>
+        <fieldset>
         <c:if test="${usuario != null}">
             <h1>Bienvenido ${usuario.nombre} ${usuario.apPaterno}</h1>
         </c:if> 
@@ -21,16 +23,17 @@
                 <c:when test="${usuario == null}">
                     <li><a href="/registro">Registrarse</a></li>
                     <li><a href="/login">Login</a></li>
-                </c:when>
-                <c:otherwise>
-                    <c:if test="${usuario.idRol.nombreRol.equals('Administrador')}">
+                    </c:when>
+                    <c:otherwise>
+                        <c:if test="${usuario.idRol.nombreRol.equals('Administrador')}">
                         <li><a href="/admin">Panel Administrador</a></li>
-                    </c:if>
+                        </c:if>
                     <li><a href="/cotizar">Cotizar Pasajes</a></li>
                     <li><a href="/cotizaciones">Ver Cotizaciones</li>
                     <li><a href="/logout">Salir</a></li>
-                </c:otherwise>
-            </c:choose>
+                    </c:otherwise>
+                </c:choose>
         </ol>
-    </body>
+    </fieldset>
+</body>
 </html>
