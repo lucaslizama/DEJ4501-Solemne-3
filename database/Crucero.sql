@@ -53,6 +53,7 @@ CREATE TABLE tipoHabitacion(
     id int auto_increment,
     nombre varchar(20) not null,
     cantidad_personas int,
+    valor int,
     PRIMARY KEY(id)
 );
 
@@ -150,13 +151,16 @@ insert into puertoDestino(numero_puerto,nombre_puerto) values (10, 'Puerto de Ca
 
 -- Insertar datos tipoHabitacion
 alter table tipoHabitacion auto_increment = 1;
-insert into tipoHabitacion(nombre,cantidad_personas) values ('Camarote Interior',10);
-insert into tipoHabitacion(nombre,cantidad_personas) values ('Camarote Oceanview',20);
-insert into tipoHabitacion(nombre,cantidad_personas) values ('Camarote con balcón',30);
-insert into tipoHabitacion(nombre,cantidad_personas) values ('Suite',40);
-insert into tipoHabitacion(nombre,cantidad_personas) values ('Suite de lujo',50);
+insert into tipoHabitacion(nombre,cantidad_personas,valor) values ('Camarote Interior',10,600000);
+insert into tipoHabitacion(nombre,cantidad_personas,valor) values ('Camarote Oceanview',20,850000);
+insert into tipoHabitacion(nombre,cantidad_personas,valor) values ('Camarote con balcón',30,1200000);
+insert into tipoHabitacion(nombre,cantidad_personas,valor) values ('Suite',40,2300000);
+insert into tipoHabitacion(nombre,cantidad_personas,valor) values ('Suite de lujo',50,4300000);
 
 -- Insertar datos usuario
 alter table usuario auto_increment = 1;
-insert into usuario(id_rol,rut_usuario,dv_usuario,nombre,ap_paterno,ap_materno,user_name,correo,pass,) values (1,'17486227','3','Francisco','Rodriguez','Torres','Pancho','fcorodriguez@gmail.com','$2a$12$YvSkLIIiaU/M1aWre9FrVeBnZcxkdI4.VjctxQuniM.b9ze1EN/Aq');
-insert into usuario(id_rol,rut_usuario,dv_usuario,nombre,ap_paterno,ap_materno,user_name,correo,pass,) values (2,'18464695','1','Lucas','Lizama','Monje','lucaslizama','lucaslizama3@hotmail.com','$2a$12$lMXksoqsluzWdzGpPVkLS.e2OaOvWq34D8egF/Jw0TIbElpmHMdya');
+insert into usuario(id_rol,rut_usuario,dv_usuario,nombre,ap_paterno,ap_materno,user_name,correo,pass) values (1,'17486227','3','Francisco','Rodriguez','Torres','Pancho','fcorodriguez@gmail.com','$2a$12$YvSkLIIiaU/M1aWre9FrVeBnZcxkdI4.VjctxQuniM.b9ze1EN/Aq');
+insert into usuario(id_rol,rut_usuario,dv_usuario,nombre,ap_paterno,ap_materno,user_name,correo,pass) values (2,'18464695','1','Lucas','Lizama','Monje','lucaslizama','lucaslizama3@hotmail.com','$2a$12$lMXksoqsluzWdzGpPVkLS.e2OaOvWq34D8egF/Jw0TIbElpmHMdya');
+
+
+
