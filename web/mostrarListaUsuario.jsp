@@ -14,7 +14,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <table>
+        <table style="border:1px;">
             <thead> 
                 <th> Rut </th>
                 <th> Fecha Embarque </th>
@@ -22,6 +22,7 @@
                 <th> Lugar Origen </th>
                 <th> Lugar Destino </th>
                 <th> Habitacion </th>
+                <th> Valor </th>
             </thead>
             <tbody>
                 <c:if test="${listaCompra != null}">
@@ -33,7 +34,8 @@
                             <td>${compra.puertoOrigen.nombre}</td>
                             <td>${compra.puertoDestino.nombre}</td>
                             <td>${compra.habitacion.idTipoHabitacion.nombre}</td>
-                        </tr>                
+                            <td>&#36;${compra.valorPasaje * compra.numeroPasajeros}</td>
+                        </tr>
                     </c:forEach>
                 </c:if>
             </tbody>

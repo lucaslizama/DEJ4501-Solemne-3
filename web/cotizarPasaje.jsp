@@ -16,7 +16,7 @@
         <c:if test="${usuario != null}">
             <h1>Bienvenido ${usuario.nombre} ${usuario.apPaterno}</h1>
         </c:if>
-        <form action="cotizacion.do" method="POST">
+        <form action="/cotizar" method="POST">
             <fieldset>
                 <legend>Ingrese sus datos para realizar la cotizacion</legend>
                 <label class="form-label" for="puertoOrigen">Puerto Origen</label>

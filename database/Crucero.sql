@@ -62,6 +62,7 @@ CREATE TABLE habitacion(
     id int auto_increment,
     id_tipo_habitacion int not null,
     numero_habitacion int UNSIGNED not null,
+    ocupada boolean not null,
     PRIMARY KEY(id),
     FOREIGN KEY(id_tipo_habitacion) REFERENCES tipoHabitacion(id)
 );
@@ -162,5 +163,55 @@ alter table usuario auto_increment = 1;
 insert into usuario(id_rol,rut_usuario,dv_usuario,nombre,ap_paterno,ap_materno,user_name,correo,pass) values (1,'17486227','3','Francisco','Rodriguez','Torres','Pancho','fcorodriguez@gmail.com','$2a$12$YvSkLIIiaU/M1aWre9FrVeBnZcxkdI4.VjctxQuniM.b9ze1EN/Aq');
 insert into usuario(id_rol,rut_usuario,dv_usuario,nombre,ap_paterno,ap_materno,user_name,correo,pass) values (2,'18464695','1','Lucas','Lizama','Monje','lucaslizama','lucaslizama3@hotmail.com','$2a$12$lMXksoqsluzWdzGpPVkLS.e2OaOvWq34D8egF/Jw0TIbElpmHMdya');
 
-
-
+-- Insertar datos habitaciones
+alter table habitacion auto_increment = 1;
+insert into habitacion(id_tipo_habitacion,numero_habitacion,ocupada) values (1,100,false);
+insert into habitacion(id_tipo_habitacion,numero_habitacion,ocupada) values (1,101,false);
+insert into habitacion(id_tipo_habitacion,numero_habitacion,ocupada) values (1,102,false);
+insert into habitacion(id_tipo_habitacion,numero_habitacion,ocupada) values (1,103,false);
+insert into habitacion(id_tipo_habitacion,numero_habitacion,ocupada) values (1,104,false);
+insert into habitacion(id_tipo_habitacion,numero_habitacion,ocupada) values (1,105,false);
+insert into habitacion(id_tipo_habitacion,numero_habitacion,ocupada) values (1,106,false);
+insert into habitacion(id_tipo_habitacion,numero_habitacion,ocupada) values (1,107,false);
+insert into habitacion(id_tipo_habitacion,numero_habitacion,ocupada) values (1,108,false);
+insert into habitacion(id_tipo_habitacion,numero_habitacion,ocupada) values (1,109,false);
+insert into habitacion(id_tipo_habitacion,numero_habitacion,ocupada) values (2,110,false);
+insert into habitacion(id_tipo_habitacion,numero_habitacion,ocupada) values (2,111,false);
+insert into habitacion(id_tipo_habitacion,numero_habitacion,ocupada) values (2,112,false);
+insert into habitacion(id_tipo_habitacion,numero_habitacion,ocupada) values (2,113,false);
+insert into habitacion(id_tipo_habitacion,numero_habitacion,ocupada) values (2,114,false);
+insert into habitacion(id_tipo_habitacion,numero_habitacion,ocupada) values (2,115,false);
+insert into habitacion(id_tipo_habitacion,numero_habitacion,ocupada) values (2,116,false);
+insert into habitacion(id_tipo_habitacion,numero_habitacion,ocupada) values (2,117,false);
+insert into habitacion(id_tipo_habitacion,numero_habitacion,ocupada) values (2,118,false);
+insert into habitacion(id_tipo_habitacion,numero_habitacion,ocupada) values (2,119,false);
+insert into habitacion(id_tipo_habitacion,numero_habitacion,ocupada) values (3,120,false);
+insert into habitacion(id_tipo_habitacion,numero_habitacion,ocupada) values (3,121,false);
+insert into habitacion(id_tipo_habitacion,numero_habitacion,ocupada) values (3,122,false);
+insert into habitacion(id_tipo_habitacion,numero_habitacion,ocupada) values (3,123,false);
+insert into habitacion(id_tipo_habitacion,numero_habitacion,ocupada) values (3,124,false);
+insert into habitacion(id_tipo_habitacion,numero_habitacion,ocupada) values (3,125,false);
+insert into habitacion(id_tipo_habitacion,numero_habitacion,ocupada) values (3,126,false);
+insert into habitacion(id_tipo_habitacion,numero_habitacion,ocupada) values (3,127,false);
+insert into habitacion(id_tipo_habitacion,numero_habitacion,ocupada) values (3,128,false);
+insert into habitacion(id_tipo_habitacion,numero_habitacion,ocupada) values (3,129,false);
+insert into habitacion(id_tipo_habitacion,numero_habitacion,ocupada) values (4,130,false);
+insert into habitacion(id_tipo_habitacion,numero_habitacion,ocupada) values (4,131,false);
+insert into habitacion(id_tipo_habitacion,numero_habitacion,ocupada) values (4,132,false);
+insert into habitacion(id_tipo_habitacion,numero_habitacion,ocupada) values (4,133,false);
+insert into habitacion(id_tipo_habitacion,numero_habitacion,ocupada) values (4,134,false);
+insert into habitacion(id_tipo_habitacion,numero_habitacion,ocupada) values (4,135,false);
+insert into habitacion(id_tipo_habitacion,numero_habitacion,ocupada) values (4,136,false);
+insert into habitacion(id_tipo_habitacion,numero_habitacion,ocupada) values (4,137,false);
+insert into habitacion(id_tipo_habitacion,numero_habitacion,ocupada) values (4,138,false);
+insert into habitacion(id_tipo_habitacion,numero_habitacion,ocupada) values (4,139,false);
+insert into habitacion(id_tipo_habitacion,numero_habitacion,ocupada) values (5,140,false);
+insert into habitacion(id_tipo_habitacion,numero_habitacion,ocupada) values (5,141,false);
+insert into habitacion(id_tipo_habitacion,numero_habitacion,ocupada) values (5,142,false);
+insert into habitacion(id_tipo_habitacion,numero_habitacion,ocupada) values (5,143,false);
+insert into habitacion(id_tipo_habitacion,numero_habitacion,ocupada) values (5,144,false);
+insert into habitacion(id_tipo_habitacion,numero_habitacion,ocupada) values (5,145,false);
+insert into habitacion(id_tipo_habitacion,numero_habitacion,ocupada) values (5,146,false);
+insert into habitacion(id_tipo_habitacion,numero_habitacion,ocupada) values (5,147,false);
+insert into habitacion(id_tipo_habitacion,numero_habitacion,ocupada) values (5,148,false);
+insert into habitacion(id_tipo_habitacion,numero_habitacion,ocupada) values (5,149,false);
