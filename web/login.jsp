@@ -23,6 +23,7 @@
                 <button class="button-login" type="submit">Login</button>
             </fieldset>
         </fieldset>
+        <span style="color:${color}; font-size: 14pt; margin-top: 10px; display: block;">${mensaje}</span>
     </form>
 </body>
 </html>

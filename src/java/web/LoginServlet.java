@@ -10,6 +10,7 @@ import ejb.UsuarioFacade;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.ejb.EJB;
+import javax.ejb.EJBException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -46,7 +47,7 @@ public class LoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         if(request.getSession(false).getAttribute("usuario") != null){
-            RequestDispatcher rd = request.getRequestDispatcher("/");
+            RequestDispatcher rd = request.getRequestDispatcher("/index");
             rd.forward(request, response);
             return;
         }
@@ -67,32 +68,32 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         if(request.getSession().getAttribute("usuario") != null){
-            response.sendRedirect("/");
-            //RequestDispatcher rd = request.getRequestDispatcher("/");
-            //rd.forward(request, response);
+            response.sendRedirect("/index");
         }
         
         if(request.getParameter("username") == null || request.getParameter("pass") == null){
             request.setAttribute("mensaje", null);
-            response.sendRedirect("/");
-            //RequestDispatcher rd = request.getRequestDispatcher("/");
-            //rd.forward(request, response);
+            response.sendRedirect("/index");
         }
         
         String username = request.getParameter("username");
         String password = request.getParameter("pass");
         
         if(username.isEmpty() || password.isEmpty()){
-            request.setAttribute("mensaje", "No pueden haber campos vacios!");
+            request.setAttribute("mensaje", "No puede haber campos vacios!");
+            request.setAttribute("color", "red");
             RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
             rd.forward(request, response);
             return;
         }
         
-        Usuario user = uf.findByUsername(username);
+        Usuario user;
         
-        if(user == null) {
+        try {
+            user = uf.findByUsername(username);
+        } catch(EJBException ex) {
             request.setAttribute("mensaje", "El usuario " + username + " no se encuentra registrado");
+            request.setAttribute("color", "red");
             RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
             rd.forward(request, response);
             return;
@@ -100,10 +101,11 @@ public class LoginServlet extends HttpServlet {
         
         if(BCrypt.checkpw(password, user.getPass())){
             request.getSession().setAttribute("usuario", user);
-            response.sendRedirect("/");
+            response.sendRedirect("/index");
             return;
         } else {
             request.setAttribute("mensaje", "La contraseña es incorrecta");
+            request.setAttribute("color", "red");
             RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
             rd.forward(request, response);
             return;
