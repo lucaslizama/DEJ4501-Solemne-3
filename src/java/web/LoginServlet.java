@@ -8,7 +8,6 @@ package web;
 import db.Usuario;
 import ejb.UsuarioFacade;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.servlet.RequestDispatcher;
