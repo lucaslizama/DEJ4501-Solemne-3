@@ -34,7 +34,8 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Habitacion.findAll", query = "SELECT h FROM Habitacion h"),
     @NamedQuery(name = "Habitacion.findById", query = "SELECT h FROM Habitacion h WHERE h.id = :id"),
-    @NamedQuery(name = "Habitacion.findByNumeroHabitacion", query = "SELECT h FROM Habitacion h WHERE h.numeroHabitacion = :numeroHabitacion")})
+    @NamedQuery(name = "Habitacion.findByNumeroHabitacion", query = "SELECT h FROM Habitacion h WHERE h.numeroHabitacion = :numeroHabitacion"),
+    @NamedQuery(name = "Habitacion.findByOcupada", query = "SELECT h FROM Habitacion h WHERE h.ocupada = :ocupada")})
 public class Habitacion implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -46,6 +47,10 @@ public class Habitacion implements Serializable {
     @NotNull
     @Column(name = "numero_habitacion")
     private int numeroHabitacion;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "ocupada")
+    private boolean ocupada;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idHabitacion")
     private List<Compra> compraList;
     @JoinColumn(name = "id_tipo_habitacion", referencedColumnName = "id")
@@ -59,9 +64,10 @@ public class Habitacion implements Serializable {
         this.id = id;
     }
 
-    public Habitacion(Integer id, int numeroHabitacion) {
+    public Habitacion(Integer id, int numeroHabitacion, boolean ocupada) {
         this.id = id;
         this.numeroHabitacion = numeroHabitacion;
+        this.ocupada = ocupada;
     }
 
     public Integer getId() {
@@ -78,6 +84,14 @@ public class Habitacion implements Serializable {
 
     public void setNumeroHabitacion(int numeroHabitacion) {
         this.numeroHabitacion = numeroHabitacion;
+    }
+
+    public boolean getOcupada() {
+        return ocupada;
+    }
+
+    public void setOcupada(boolean ocupada) {
+        this.ocupada = ocupada;
     }
 
     @XmlTransient
