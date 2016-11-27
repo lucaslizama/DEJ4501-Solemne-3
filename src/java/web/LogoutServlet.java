@@ -38,7 +38,7 @@ public class LogoutServlet extends HttpServlet {
             return;
         }
         
-        request.getSession(false).setAttribute("usuario", null);
+        request.getSession().invalidate();
         response.sendRedirect("/");
         //RequestDispatcher rd = request.getRequestDispatcher("/");
         //rd.forward(request, response);

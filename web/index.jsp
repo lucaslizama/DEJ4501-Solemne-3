@@ -29,7 +29,7 @@
                         <li><a href="/admin">Panel Administrador</a></li>
                         </c:if>
                     <li><a href="/cotizar">Cotizar Pasajes</a></li>
-                    <li><a href="/cotizaciones">Ver Cotizaciones</li>
+                    <li><a href="/compras">Ver Cotizaciones</li>
                     <li><a href="/logout">Salir</a></li>
                     </c:otherwise>
                 </c:choose>
