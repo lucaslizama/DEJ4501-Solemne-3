@@ -44,6 +44,7 @@
                         <option value="${tipoHabitacion.id}">${tipoHabitacion.nombre}</option>
                     </c:forEach>
                 </select>
+                <label class="form-label" for="formaPago">Forma de Pago</label>
                 <select name="formaPago">
                     <c:forEach var="formaPago" items="${formasPago}">
                         <option value="${formaPago.id}">${formaPago.nombre}</option>
@@ -58,13 +59,12 @@
                     <option value="1">1</option> 
                     <option value="2">2</option>
                     <option value="3">3</option>
-                    <option value="4">4</option>                                                                    
+                    <option value="4">4</option>
                 </select><br>
                 <button class="submit-button" type="submit">Registrar</button>
                 <span style="color:${color}">${mensaje}</span>
-                <div><a href="/index" style="visibility:${mensaje != null ? 'visible' : 'hidden'}">Volver a inicio</a></div>
-                <li><a href="/index">Volver</a></li>
             </fieldset>
-        </form>        
+        </form>
+        <span style="display: block; margin-left: 10px; margin-top: 10px; font-size: 14pt"><a href="/index">Volver</a></span>
     </body>
 </html>

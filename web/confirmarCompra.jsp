@@ -25,22 +25,21 @@
                 <th> Valor </th>
             </thead>
             <tbody>
-                <c:if test="${listaCompra != null}">
-                    <tr>
-                        <td>${usuario.rutUsuario}-${usuario.dvUsuario}</td>
-                        <td><fmt:formatDate pattern="dd/MM/yyyy" value="${compra.fechaEnbarque}"/></td>
-                        <td><fmt:formatDate pattern="dd/MM/yyyy" value="${compra.fechaDesenbarque}"/></td>
-                        <td>${compra.idOrigen.nombrePuerto}</td>
-                        <td>${compra.idDestino.nombrePuerto}</td>
-                        <td>${compra.idHabitacion.idTipoHabitacion.nombre}</td>
-                        <td>${compra.idFormaPago.nombre}</td>
-                        <td>&#36;${compra.valorPasaje}</td>
-                    </tr>
-                </c:if>
+                <tr>
+                    <td>${usuario.rutUsuario}-${usuario.dvUsuario}</td>
+                    <td><fmt:formatDate pattern="dd/MM/yyyy" value="${cotizacion.fechaEnbarque}"/></td>
+                    <td><fmt:formatDate pattern="dd/MM/yyyy" value="${cotizacion.fechaDesenbarque}"/></td>
+                    <td>${cotizacion.idOrigen.nombrePuerto}</td>
+                    <td>${cotizacion.idDestino.nombrePuerto}</td>
+                    <td>${cotizacion.idHabitacion.idTipoHabitacion.nombre}</td>
+                    <td>${cotizacion.idFormaPago.nombre}</td>
+                    <td>&#36;${cotizacion.valorPasaje}</td>
+                </tr>
             </tbody>
         </table>
         <form class="comprar-form" action="/comprar" method="POST">
             <button type="submit">Comprar</button>
         </form>
+        <span style="color:${color}">${mensaje}</span>
     </body>
 </html>

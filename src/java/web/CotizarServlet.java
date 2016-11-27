@@ -7,6 +7,7 @@ package web;
 
 import db.Compra;
 import db.Habitacion;
+import db.Usuario;
 import ejb.BarcoFacade;
 import ejb.FormapagoFacade;
 import ejb.HabitacionFacade;
@@ -166,7 +167,7 @@ public class CotizarServlet extends HttpServlet {
         }
        
         if(habitacion == null) {
-            request.setAttribute("mensaje", "Todas las habitaciones del tipo esfecificado se encuentran ocupadas!");
+            request.setAttribute("mensaje", "Todas las habitaciones del tipo especificado se encuentran ocupadas!");
             request.setAttribute("color", "red");
             request.getRequestDispatcher("cotizarPasaje.jsp").forward(request, response);
             return;
@@ -180,6 +181,12 @@ public class CotizarServlet extends HttpServlet {
         compra.setIdDestino(pdf.find(Integer.parseInt(destino)));
         compra.setIdOrigen(pof.find(Integer.parseInt(origen)));
         compra.setIdFormaPago(fpf.find(Integer.parseInt(formaPago)));
+        compra.setIdUsuario((Usuario)request.getSession(false).getAttribute("usuario"));
+        compra.setIdHabitacion(habitacion);
+        compra.setValorPasaje(habitacion.getIdTipoHabitacion().getValor() * compra.getNumeroPasajeros());
+        
+        request.getSession(false).setAttribute("cotizacion", compra);
+        request.getRequestDispatcher("confirmarCompra.jsp").forward(request, response);
     }
 
     /**

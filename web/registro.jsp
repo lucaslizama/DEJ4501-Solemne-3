@@ -36,9 +36,8 @@
                 <input class="form-textfield" type="password" name="repetirPass">
                 <button class="submit-button" type="submit">Registrar</button>
                 <span style="color:${color}">${mensaje}</span>
-                <div><a href="/" style="visibility:${mensaje != null ? 'visible' : 'hidden'}">Volver a inicio</a></div>
-                <li><a href="/index">Volver</a></li>
             </form>
         </fieldset>
+        <span style="display: block; margin-left: 10px; margin-top: 10px; font-size: 14pt"><a href="/index">Volver</a></span>
     </body>
 </html>

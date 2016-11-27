@@ -22,8 +22,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Pancho
  */
-@WebServlet(name = "ListaUsuarioServlet", urlPatterns = {"/cotizaciones"})
-public class CotizacionesListarServlet extends HttpServlet {
+@WebServlet(name = "ListaUsuarioServlet", urlPatterns = {"/compras"})
+public class ComprasListarServlet extends HttpServlet {
 
     @EJB
     private CompraFacade cf;
@@ -39,7 +39,7 @@ public class CotizacionesListarServlet extends HttpServlet {
         Usuario user = (Usuario) request.getSession().getAttribute("usuario");
         List<Compra> lista = user.getCompraList();
         request.setAttribute("listaCompra", lista);
-        request.getRequestDispatcher("mostrarListaUsuario.jsp").forward(request, response);
+        request.getRequestDispatcher("compras.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
