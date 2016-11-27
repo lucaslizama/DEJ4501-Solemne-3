@@ -5,10 +5,13 @@
  */
 package ejb;
 
+import db.Habitacion;
 import db.Tipohabitacion;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -28,4 +31,16 @@ public class TipohabitacionFacade extends AbstractFacade<Tipohabitacion> {
         super(Tipohabitacion.class);
     }
     
+    public Habitacion findHabitacionVaciaByTipo(int idTipoHabitacion) {
+        TypedQuery consulta = em.createNamedQuery("Tipohabitacion.findById", Tipohabitacion.class);
+        Tipohabitacion tipo = (Tipohabitacion)consulta.setParameter("id", idTipoHabitacion).getResultList().get(0);
+        List<Habitacion> habitaciones = tipo.getHabitacionList();
+        
+        for(Habitacion habitacion : habitaciones) {
+            if(!habitacion.getOcupada())
+                return habitacion;
+        }
+        
+        return null;
+    }
 }
