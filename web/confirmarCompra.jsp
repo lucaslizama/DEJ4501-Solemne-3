@@ -40,6 +40,6 @@
         <form class="comprar-form" action="/comprar" method="POST">
             <button type="submit">Comprar</button>
         </form>
-        <span style="color:${color}">${mensaje}</span>
+        <span style="color:${color}; display:block">${mensaje}</span>
     </body>
 </html>

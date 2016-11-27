@@ -115,6 +115,14 @@ public class CotizarServlet extends HttpServlet {
             request.getRequestDispatcher("cotizarPasaje.jsp").forward(request, response);
             return;
         }
+        
+        if(origen.equals(destino)){
+            request.setAttribute("mensaje", "El puerto de destino debe ser distinto al de embarque");
+            request.setAttribute("color", "red");
+            request.getRequestDispatcher("cotizarPasaje.jsp").forward(request, response);
+            return;
+        }
+        
         if (Integer.parseInt(origen) > pof.findAll().size() || Integer.parseInt(origen) < 1) {
             request.setAttribute("mensaje", "Puerto de origen invalido");
             request.setAttribute("color", "red");

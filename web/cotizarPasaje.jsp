@@ -62,7 +62,7 @@
                     <option value="4">4</option>
                 </select><br>
                 <button class="submit-button" type="submit">Registrar</button>
-                <span style="color:${color}">${mensaje}</span>
+                <span style="color:${color}; display:block;">${mensaje}</span>
             </fieldset>
         </form>
         <span style="display: block; margin-left: 10px; margin-top: 10px; font-size: 14pt"><a href="/index">Volver</a></span>
