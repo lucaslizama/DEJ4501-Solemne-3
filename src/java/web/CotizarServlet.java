@@ -5,7 +5,10 @@
  */
 package web;
 
+import db.Compra;
+import db.Habitacion;
 import ejb.BarcoFacade;
+import ejb.FormapagoFacade;
 import ejb.HabitacionFacade;
 import ejb.PuertodestinoFacade;
 import ejb.PuertoorigenFacade;
@@ -13,7 +16,9 @@ import ejb.TipohabitacionFacade;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.ejb.EJB;
+import javax.ejb.EJBException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -36,6 +41,8 @@ public class CotizarServlet extends HttpServlet {
     private PuertoorigenFacade pof;
     @EJB
     private TipohabitacionFacade hf;
+    @EJB
+    private FormapagoFacade fpf;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -62,6 +69,7 @@ public class CotizarServlet extends HttpServlet {
         request.setAttribute("puertosDestino", pdf.findAll());
         request.setAttribute("barcos", bf.findAll());
         request.setAttribute("tipoHabitaciones", hf.findAll());
+        request.setAttribute("formasPago", fpf.findAll());
 
         RequestDispatcher rd = request.getRequestDispatcher("cotizarPasaje.jsp");
         rd.forward(request, response);
@@ -91,6 +99,7 @@ public class CotizarServlet extends HttpServlet {
         String embarque = request.getParameter("fecEmbarque");
         String desembarque = request.getParameter("fecDesembarque");
         String cantidad = request.getParameter("cantidad");
+        String formaPago = request.getParameter("formaPago");
 
         if (origen.isEmpty() || destino.isEmpty() || barco.isEmpty() || tipoHabitacion.isEmpty()
                 || embarque.isEmpty() || desembarque.isEmpty() || cantidad.isEmpty()) {
@@ -125,10 +134,52 @@ public class CotizarServlet extends HttpServlet {
         }
 
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+        Date fechaOrigen;
+        Date fechaDestino;
+        
         try {
-            
+            fechaOrigen = formato.parse(origen);
+            fechaDestino = formato.parse(destino);
         } catch (Exception ex) {
+            request.setAttribute("mensaje", "Formato de fecha invalido!");
+            request.setAttribute("color", "red");
+            request.getRequestDispatcher("cotizarPasaje.jsp").forward(request, response);
+            return;
         }
+        
+        if(fechaOrigen.after(fechaDestino)){
+            request.setAttribute("mensaje", "La fecha de desembarque no puede ser anterior a la de embarque!");
+            request.setAttribute("color", "red");
+            request.getRequestDispatcher("cotizarPasaje.jsp").forward(request, response);
+            return;
+        }
+        
+        Habitacion habitacion;
+        
+        try {
+            habitacion = hf.findHabitacionVaciaByTipo(Integer.parseInt(tipoHabitacion));
+        } catch(EJBException ex) {
+            request.setAttribute("mensaje", "No existen habitaciones del tipo especificado!");
+            request.setAttribute("color", "red");
+            request.getRequestDispatcher("cotizarPasaje.jsp").forward(request, response);
+            return;
+        }
+       
+        if(habitacion == null) {
+            request.setAttribute("mensaje", "Todas las habitaciones del tipo esfecificado se encuentran ocupadas!");
+            request.setAttribute("color", "red");
+            request.getRequestDispatcher("cotizarPasaje.jsp").forward(request, response);
+            return;
+        }
+        
+        Compra compra = new Compra();
+        compra.setFechaEnbarque(fechaOrigen);
+        compra.setFechaDesenbarque(fechaDestino);
+        compra.setNumeroPasajeros(Integer.parseInt(cantidad));
+        compra.setIdBarco(bf.find(Integer.parseInt(barco)));
+        compra.setIdDestino(pdf.find(Integer.parseInt(destino)));
+        compra.setIdOrigen(pof.find(Integer.parseInt(origen)));
+        compra.setIdFormaPago(fpf.find(Integer.parseInt(formaPago)));
     }
 
     /**
