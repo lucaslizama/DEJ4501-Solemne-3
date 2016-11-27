@@ -44,6 +44,11 @@
                         <option value="${tipoHabitacion.id}">${tipoHabitacion.nombre}</option>
                     </c:forEach>
                 </select>
+                <select name="formaPago">
+                    <c:forEach var="formaPago" items="${formasPago}">
+                        <option value="${formaPago.id}">${formaPago.nombre}</option>
+                    </c:forEach>
+                </select>
                 <label class="form-label" for="fecEmbarque">Fecha de Origen</label>
                 <input class="form-date" type="date" name="fecEmbarque">
                 <label class="form-label" for="fecDesembarque">Fecha de Destino</label>
