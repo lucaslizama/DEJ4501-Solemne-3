@@ -36,7 +36,7 @@
                             <td>${compra.idOrigen.nombrePuerto}</td>
                             <td>${compra.idDestino.nombrePuerto}</td>
                             <td>${compra.idHabitacion.idTipoHabitacion.nombre}</td>
-                            <td>&#36;${compra.valorPasaje * compra.numeroPasajeros}</td>
+                            <td>&#36;${compra.valorPasaje}</td>
                         </tr>
                     </c:forEach>
                 </c:if>
