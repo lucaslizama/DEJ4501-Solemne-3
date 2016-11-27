@@ -32,14 +32,14 @@
                         <option value="${puertoDestino.id}">${puertoDestino.nombrePuerto}</option>
                     </c:forEach>
                 </select>
-                <label class="form-label" for="nomCrucero">Nombre del Crucero</label>
+                <label class="form-label" for="nomBarco">Nombre del Crucero</label>
                 <select name="nomBarco">
                     <c:forEach var="barco" items="${barcos}">
                         <option value="${barco.id}">${barco.nombreBarco}</option>
                     </c:forEach>
                 </select>
                 <label class="form-label" for="tipoHabitacion">Tipo de Habitacion</label>
-                <select name="tipHabitacion">
+                <select name="tipoHabitacion">
                     <c:forEach var="tipoHabitacion" items="${tipoHabitaciones}">
                         <option value="${tipoHabitacion.id}">${tipoHabitacion.nombre}</option>
                     </c:forEach>

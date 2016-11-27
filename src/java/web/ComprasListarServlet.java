@@ -37,7 +37,7 @@ public class ComprasListarServlet extends HttpServlet {
 
         //La entidad usuario tiene una lista con todas las compras asociadas a el.
         Usuario user = (Usuario) request.getSession().getAttribute("usuario");
-        List<Compra> lista = user.getCompraList();
+        List<Compra> lista = user.getCompraList().size() == 0 ? null : user.getCompraList();
         request.setAttribute("listaCompra", lista);
         request.getRequestDispatcher("compras.jsp").forward(request, response);
     }

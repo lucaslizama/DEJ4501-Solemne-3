@@ -33,15 +33,13 @@ public class LogoutServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         if(request.getSession(false).getAttribute("usuario") == null) {
-            RequestDispatcher rd = request.getRequestDispatcher("/");
+            RequestDispatcher rd = request.getRequestDispatcher("/index");
             rd.forward(request, response);
             return;
         }
         
         request.getSession().invalidate();
-        response.sendRedirect("/");
-        //RequestDispatcher rd = request.getRequestDispatcher("/");
-        //rd.forward(request, response);
+        response.sendRedirect("/index");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

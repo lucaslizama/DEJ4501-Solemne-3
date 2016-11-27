@@ -92,10 +92,16 @@ public class CotizarServlet extends HttpServlet {
             response.sendRedirect("/index");
             return;
         }
+        
+        request.setAttribute("puertosOrigen", pof.findAll());
+        request.setAttribute("puertosDestino", pdf.findAll());
+        request.setAttribute("barcos", bf.findAll());
+        request.setAttribute("tipoHabitaciones", hf.findAll());
+        request.setAttribute("formasPago", fpf.findAll());
 
         String origen = request.getParameter("puertoOrigen");
         String destino = request.getParameter("puertoDestino");
-        String barco = request.getParameter("barco");
+        String barco = request.getParameter("nomBarco");
         String tipoHabitacion = request.getParameter("tipoHabitacion");
         String embarque = request.getParameter("fecEmbarque");
         String desembarque = request.getParameter("fecDesembarque");
@@ -103,7 +109,7 @@ public class CotizarServlet extends HttpServlet {
         String formaPago = request.getParameter("formaPago");
 
         if (origen.isEmpty() || destino.isEmpty() || barco.isEmpty() || tipoHabitacion.isEmpty()
-                || embarque.isEmpty() || desembarque.isEmpty() || cantidad.isEmpty()) {
+                || embarque.isEmpty() || desembarque.isEmpty() || cantidad.isEmpty() || formaPago.isEmpty()) {
             request.setAttribute("mensaje", "No pueden haber campos Vacios !!!");
             request.setAttribute("color", "red");
             request.getRequestDispatcher("cotizarPasaje.jsp").forward(request, response);
@@ -133,14 +139,20 @@ public class CotizarServlet extends HttpServlet {
             request.getRequestDispatcher("cotizarPasaje.jsp").forward(request, response);
             return;
         }
+        if (Integer.parseInt(formaPago) > fpf.findAll().size() || Integer.parseInt(formaPago) < 1) {
+            request.setAttribute("mensaje", "La forma de pago es invalida");
+            request.setAttribute("color", "red");
+            request.getRequestDispatcher("cotizarPasaje.jsp").forward(request, response);
+            return;
+        }
 
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
         Date fechaOrigen;
         Date fechaDestino;
         
         try {
-            fechaOrigen = formato.parse(origen);
-            fechaDestino = formato.parse(destino);
+            fechaOrigen = formato.parse(embarque);
+            fechaDestino = formato.parse(desembarque);
         } catch (Exception ex) {
             request.setAttribute("mensaje", "Formato de fecha invalido!");
             request.setAttribute("color", "red");
@@ -148,7 +160,7 @@ public class CotizarServlet extends HttpServlet {
             return;
         }
         
-        if(fechaOrigen.after(fechaDestino)){
+        if(fechaOrigen.after(fechaDestino) || fechaOrigen.before(new Date())){
             request.setAttribute("mensaje", "La fecha de desembarque no puede ser anterior a la de embarque!");
             request.setAttribute("color", "red");
             request.getRequestDispatcher("cotizarPasaje.jsp").forward(request, response);
