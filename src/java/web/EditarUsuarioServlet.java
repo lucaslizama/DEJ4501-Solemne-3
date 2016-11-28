@@ -5,6 +5,8 @@
  */
 package web;
 
+import db.Usuario;
+import ejb.RolusuarioFacade;
 import ejb.UsuarioFacade;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -24,6 +26,8 @@ public class EditarUsuarioServlet extends HttpServlet {
 
     @EJB
     private UsuarioFacade uf;
+    @EJB
+    private RolusuarioFacade ruf;
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -42,7 +46,17 @@ public class EditarUsuarioServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        if(request.getSession(false).getAttribute("usuario") == null) {
+            response.sendRedirect("/index");
+            return;
+        }
+        
+        String id = request.getParameter("id");
+        
+        request.setAttribute("roles", ruf.findAll());
+        request.setAttribute("usuarioEditableId", id);
+        request.setAttribute("usuarioEditable", uf.find(Integer.parseInt(id)));
+        request.getRequestDispatcher("editarUsuario.jsp").forward(request, response);
     }
 
     /**
@@ -56,7 +70,18 @@ public class EditarUsuarioServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        if(request.getSession(false).getAttribute("usuario") == null) {
+            response.sendRedirect("/index");
+            return;
+        }
+        
+        String id = request.getParameter("id");
+        Usuario user = uf.find(Integer.parseInt(id));
+        String idRol = request.getParameter("rol");
+        user.setIdRol(ruf.find(Integer.parseInt(idRol)));
+        uf.edit(user);
+        
+        response.sendRedirect("/admin");
     }
 
     /**
