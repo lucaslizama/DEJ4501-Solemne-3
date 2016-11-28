@@ -41,7 +41,7 @@
                 <label class="form-label" for="tipoHabitacion">Tipo de Habitacion</label>
                 <select name="tipoHabitacion">
                     <c:forEach var="tipoHabitacion" items="${tipoHabitaciones}">
-                        <option value="${tipoHabitacion.id}">${tipoHabitacion.nombre}</option>
+                        <option value="${tipoHabitacion.id}">&#36;${tipoHabitacion.valor}-${tipoHabitacion.nombre}</option>
                     </c:forEach>
                 </select>
                 <label class="form-label" for="formaPago">Forma de Pago</label>
@@ -54,7 +54,7 @@
                 <input class="form-date" type="date" name="fecEmbarque">
                 <label class="form-label" for="fecDesembarque">Fecha de Destino</label>
                 <input class="form-date" type="date" name="fecDesembarque">
-                <label class="form-label" for="cantidad">Cantida de pasajes</label>
+                <label class="form-label" for="cantidad">Cantidad de Pasajes</label>
                 <select name="cantidad" size="1">
                     <option value="1">1</option> 
                     <option value="2">2</option>

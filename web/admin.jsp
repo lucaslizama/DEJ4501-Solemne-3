@@ -35,6 +35,6 @@
                 </c:forEach>
             </tbody>
         </table>
-        <span style="font-size: 14pt; margin-top:20px; display: block"><a href="/index">Volver</a></span>
+        <span style="font-size: 14pt; margin-top:20px; display: block;"><a href="/index">Volver</a></span>
     </body>
 </html>

@@ -8,6 +8,7 @@ package web;
 import db.Compra;
 import db.Usuario;
 import ejb.CompraFacade;
+import ejb.UsuarioFacade;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -27,6 +28,8 @@ public class ComprasListarServlet extends HttpServlet {
 
     @EJB
     private CompraFacade cf;
+    @EJB
+    private UsuarioFacade uf;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -37,6 +40,7 @@ public class ComprasListarServlet extends HttpServlet {
 
         //La entidad usuario tiene una lista con todas las compras asociadas a el.
         Usuario user = (Usuario) request.getSession().getAttribute("usuario");
+        user = uf.find(user.getId());
         List<Compra> lista = user.getCompraList().size() == 0 ? null : user.getCompraList();
         request.setAttribute("listaCompra", lista);
         request.getRequestDispatcher("compras.jsp").forward(request, response);
