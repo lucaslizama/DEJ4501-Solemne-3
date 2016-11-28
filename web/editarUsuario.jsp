@@ -13,5 +13,10 @@
     </head>
     <body>
         <h1>Editar Usuario: ${usuario.userName}</h1>
+        <form action="/editarUsuario" method="POST">
+            <fieldset>
+                <legend>Datos usuario</legend>
+            </fieldset>
+        </form>
     </body>
 </html>
