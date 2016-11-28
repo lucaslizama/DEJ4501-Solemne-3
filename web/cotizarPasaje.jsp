@@ -61,7 +61,7 @@
                     <option value="3">3</option>
                     <option value="4">4</option>
                 </select><br>
-                <button class="submit-button" type="submit">Registrar</button>
+                <button class="submit-button" type="submit">Cotizar</button>
                 <span style="color:${color}; display:block;">${mensaje}</span>
             </fieldset>
         </form>
