@@ -9,6 +9,7 @@ import db.Compra;
 import db.Pasaje;
 import ejb.CompraFacade;
 import ejb.PasajeFacade;
+import ejb.UsuarioFacade;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.ejb.EJB;
@@ -30,6 +31,8 @@ public class ComprarServlet extends HttpServlet {
     private CompraFacade cf;
     @EJB
     private PasajeFacade pf;
+    @EJB
+    private UsuarioFacade uf;
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {       
@@ -106,6 +109,9 @@ public class ComprarServlet extends HttpServlet {
                 return;
             }
         }
+        
+        request.setAttribute("usuario", uf.find(compra.getIdUsuario().getId()));
+        request.getSession(false).setAttribute("cotizacion", null);
         
         response.sendRedirect("/compras");
     }

@@ -1,0 +1,36 @@
+table{
+    width: 1360px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Roboto', sans-serif;
+    background: white;
+    height: 50px;
+    padding:5px;
+    width: 100%;
+    box-shadow: 0 1px 1px rgba(1, 1, 1, 1);
+    animation: float 5s infinite;
+}
+
+td{
+    width:200px;
+    background:#FFFFFF;
+    padding:20px;
+    text-align: center;
+    font-weight:300;
+    font-size:18px;
+    text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+    border-right: 2px solid #C1C3D1;
+    border-top: 2px solid #3d3d3d;
+}
+
+.button{
+    font-size:12px; 
+    font-family:Verdana,Helvetica; 
+    font-weight:bold; 
+    color:#0000FF; 
+    background:#A4C1FF; 
+    border:2px solid blue;
+    width:150px; 
+    height:25px;
+    box-shadow: 3px 3px 2px #888888;	
+}

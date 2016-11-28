@@ -1,16 +1,11 @@
--<%-- 
-    Document   : confirmarCompra
-    Created on : 27-Nov-2016, 10:42:34
-    Author     : lucas
---%>
-
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-        <<link rel="stylesheet" href="css/comprar.css"/>
+        <link rel="stylesheet" href="css/comprar.css"/>
     </head>
     <body>
         <table>
@@ -38,7 +33,7 @@
             </tbody>
         </table>
         <form class="comprar-form" action="/comprar" method="POST">
-            <button type="submit">Comprar</button>
+            <button class="button" type="submit">Comprar</button>
         </form>
         <span style="color:${color}; display:block">${mensaje}</span>
     </body>
