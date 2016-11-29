@@ -94,4 +94,18 @@ public class RegistroRequestTest {
             fail("Error de servlet: " + ex.getMessage());
         }
     }   
+
+    /**
+     * Test of ingresarUsuario method, of class RegistroRequest.
+     */
+    @Test
+    public void testIngresarUsuario() throws Exception {
+        System.out.println("ingresarUsuario");
+        RegistroRequest instance = null;
+        boolean expResult = false;
+        boolean result = instance.ingresarUsuario();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
 }
